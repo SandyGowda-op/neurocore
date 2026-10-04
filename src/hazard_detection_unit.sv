@@ -7,6 +7,7 @@ module hazard_detection_unit (
     input  wire       idex_mem_read,
 
     input wire ifid_branch,
+    input wire idex_reg_write,
 
     output reg        pc_write,
     output reg        ifid_write,
@@ -36,6 +37,23 @@ ifid_rs2,
 `endif 
     // Load-use hazard detection
     if (idex_mem_read &&
+        (idex_rd != 0) &&
+        ((idex_rd == ifid_rs1) ||
+         (idex_rd == ifid_rs2))) begin
+
+        pc_write   = 1'b0;
+        ifid_write = 1'b0;
+        idex_flush = 1'b1;
+    end
+
+    // Branch-after-producer hazard: BEQ resolves in ID, but ID-stage
+    // forwarding only sees EX/MEM and MEM/WB. A BEQ directly behind an
+    // instruction that writes its source register would compare the stale
+    // register-file value. Stall one cycle so the producer reaches MEM and
+    // is forwarded from exmem_alu. pc_write low also suppresses the
+    // pipeline's branch_taken (it includes pc_write) for the stalled cycle.
+    if (ifid_branch &&
+        idex_reg_write &&
         (idex_rd != 0) &&
         ((idex_rd == ifid_rs1) ||
          (idex_rd == ifid_rs2))) begin

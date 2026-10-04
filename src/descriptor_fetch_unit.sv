@@ -275,7 +275,19 @@ begin
                 //--------------------------------------------------
 
                 DESC_WORD_FLAGS:
+                begin
                     working_desc.flags <= dfu_rdata;
+
+                    // NOTE: bytes_per_element has no dedicated descriptor
+                    // word (WORDS_PER_DESCRIPTOR=8 is fully packed by the
+                    // other 7 fields already). Packed here into flags[15:8],
+                    // since only flags[5:0] are defined (FLAG_* in
+                    // descriptor_pkg.sv). Without this, bytes_per_element
+                    // stayed at its reset value of 0 forever, which zeroes
+                    // out every *_addr and transfer_bytes_* calculation in
+                    // both tile_generator.sv and sparse_tile_generator.sv.
+                    working_desc.bytes_per_element <= dfu_rdata[15:8];
+                end
 
                 default:
                 begin

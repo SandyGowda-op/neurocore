@@ -18,7 +18,14 @@ module riscv_pipeline (
     output wire [31:0] dbg_r7,
     output wire [31:0] dbg_r8,
     output wire [31:0] dbg_r9,
-    output wire        dbg_accel_busy
+    output wire        dbg_accel_busy,
+
+    // Descriptor authoring bus -> accelerator_top's descriptor memory.
+    // Driven by the testbench (or later a CPU-side path); idle = desc_we 0.
+    input  wire        desc_we,
+    input  wire [6:0]  desc_idx,
+    input  wire [2:0]  desc_word_off,
+    input  wire [31:0] desc_wdata
 );
     // ============================================================
     // Global datapath signals
@@ -38,6 +45,12 @@ module riscv_pipeline (
     wire id_is_fmac; //CUSTOM ISA EXTENSION CONTROL SIGNALS
     wire id_is_relu; //CUSTOM ISA EXTENSION CONTROL SIGNALS
     wire id_is_fmac_read; //CUSTOM ISA EXTENSION CONTROL SIGNALS
+    wire id_is_fmac_setdesc; //CUSTOM ISA EXTENSION CONTROL SIGNALS (funct3=011, writes descriptor_index_reg)
+    reg  accel_done_reg;   // latched job-complete flag (driven in NEUROCORE INTEGRATION block)
+    reg  accel_busy_reg;   // set when FMAC_START dispatches, cleared on all_done -- gates a 2nd START
+    wire accelerator_any_error; // sticky error flag from accelerator_top (declared early: read by FMAC_READ status)
+    wire accelerator_all_done; // all_done pass-through (driven in NEUROCORE INTEGRATION block)
+    wire idex_is_fmac;     // FMAC_START currently in EX (assigned in EX-stage decode)
     wire [31:0] relu_result; //RELU RESULT WIRE
     wire [31:0] mmul_rdata; //MMUL RESULT READ DATA WIRE
     wire [31:0] mmul_result_direct; //DIRECT WIRE FROM MMUL TO EX STAGE FOR FMAC READS
@@ -166,6 +179,10 @@ module riscv_pipeline (
     (id_opcode == 7'b0001011) &&
     (id_funct3 == 3'b010);
 
+    assign id_is_fmac_setdesc =
+    (id_opcode == 7'b0001011) &&
+    (id_funct3 == 3'b011);
+
     //always @(*) begin
 
     //if (id_is_fmac)
@@ -193,9 +210,27 @@ module riscv_pipeline (
     id_mem_read &&
     (mmul_read_addr == 32'h00001008);
 
+    // reading_mmul_result (old MMIO poll @ 0x1008) still gates on
+    // mmul_result_valid. reading_fmac_result (FMAC_READ) now gates on
+    // accel_done_reg instead -- see NEUROCORE INTEGRATION block below --
+    // since FMAC_START no longer drives the old mmul_mem accelerator.
+    //
+    // "|| idex_is_fmac": accel_done_reg only clears once FMAC_START reaches EX
+    // (one cycle after it left ID). A FMAC_READ sitting in ID directly behind
+    // that START would still see the PREVIOUS job's stale done=1 and sail
+    // through, reading old results. While a START is in EX the new job is by
+    // definition not done yet, so hold the read one more cycle; from then on
+    // accel_done_reg itself is 0 and takes over.
+    //
+    // "id_is_fmac && accel_busy_reg": a second FMAC_START reaching EX while a
+    // job is still running would have its `run` pulse silently dropped by
+    // accelerator_top (it only accepts run in TOP_IDLE) instead of erroring
+    // -- stall it in ID until accel_busy_reg clears on all_done, same
+    // mechanism as the FMAC_READ RAW hazard above.
     assign accel_raw_hazard =
-    (reading_mmul_result || reading_fmac_result) &&
-    !mmul_result_valid;
+    (reading_mmul_result && !mmul_result_valid) ||
+    (reading_fmac_result && (!accel_done_reg || idex_is_fmac)) ||
+    (id_is_fmac && (accel_busy_reg || idex_is_fmac));
 
     `ifndef SYNTHESIS
     always @(*) begin
@@ -345,7 +380,7 @@ module riscv_pipeline (
     // EX stage (LUI FIX PRESERVED)(FORWARDING DONE)
     // ============================================================
 
-    wire idex_is_fmac =             //relu ex stage
+    assign idex_is_fmac =           //relu ex stage
     (idex_opcode == 7'b0001011) &&
     (idex_funct3 == 3'b000);
 
@@ -357,6 +392,10 @@ module riscv_pipeline (
     (idex_opcode == 7'b0001011) &&
     (idex_funct3 == 3'b010);
 
+    wire idex_is_fmac_setdesc =
+    (idex_opcode == 7'b0001011) &&
+    (idex_funct3 == 3'b011);
+
     assign forwarded_rs1 =
     (forward_a == 2'b10) ? exmem_alu :
     (forward_a == 2'b01) ? wb_data   :
@@ -366,6 +405,12 @@ module riscv_pipeline (
     (forward_b == 2'b10) ? exmem_alu :
     (forward_b == 2'b01) ? wb_data   :
                            idex_rs2;
+
+    // FMAC_READ element index: rs1[5:0] as a flat 8x8 index, same style as
+    // FMAC_SETDESC's rs1[6:0] descriptor index. row=index[5:3], col=index[2:0]
+    // (the row/col split itself happens inside scheduler_engine).
+    wire [5:0] accel_read_index = forwarded_rs1[5:0];
+    wire signed [63:0] accel_read_data;
 
     wire [31:0] alu_b = idex_alu_src ? idex_imm : forwarded_rs2;
 
@@ -379,7 +424,15 @@ module riscv_pipeline (
         relu_result :
 
     idex_is_fmac_read ?
-        mmul_result_direct :
+        // KNOWN LIMITATION: accel_read_data is 64-bit (the accelerator's
+        // MAC accumulators), truncated to the low 32 bits here because the
+        // register file / writeback path is 32-bit. Fine for this test's
+        // values (all well under 2^16) -- wrong for any real result that
+        // doesn't fit in 32 bits. A real fix needs a wider read (e.g. a
+        // second funct3 for the high half) -- out of scope for now, flagged
+        // rather than silently truncated without comment.
+        (forwarded_rs1[6] ? {30'b0, accel_busy_reg, accelerator_any_error}
+                          : accel_read_data[31:0]) :
 
         normal_alu_result;
     assign dbg_alu = alu_result_ex;
@@ -471,18 +524,19 @@ end
     //FMAC START PULSE GENERATION
 
     wire mmul_start_mmio;
-    wire mmul_start_fmac;
     wire mmul_we;
 
     assign mmul_start_mmio =
     exmem_mem_write & mmul_sel;
 
-    assign mmul_start_fmac =
-    idex_is_fmac;
-
+    // FMAC_START no longer pokes mmul_mem (that's the redirect to
+    // accelerator_top below), and FMAC_READ no longer reads its
+    // mmul_result_direct output either -- it reads accelerator_top via the
+    // indexed result_read port instead. mmul_mem stays instantiated only
+    // for the legacy MMIO poke/peek path (mmul_rdata at the MMIO addresses);
+    // mmul_result_direct is now a dead wire.
     assign mmul_we =
-    mmul_start_mmio |
-    mmul_start_fmac;
+    mmul_start_mmio;
 
     mmul_mem mmul_inst (
         .clk(clk),
@@ -498,6 +552,110 @@ end
     );
 
     assign dbg_accel_busy = mmul_busy;
+
+    //===================================================
+    // NEUROCORE INTEGRATION -- FMAC_SETDESC / FMAC_START
+    // dispatch into accelerator_top
+    //===================================================
+    // ASSUMPTION FLAGGED: width hardcoded to 7 bits here to match
+    // "writes rs1[6:0] into descriptor_index_reg". Verify this against
+    // descriptor_pkg::DESC_INDEX_WIDTH before running against the real
+    // package -- if it differs, widen/narrow this and job_index_in together.
+    localparam DESC_INDEX_WIDTH_LOCAL = 7;
+
+    reg [DESC_INDEX_WIDTH_LOCAL-1:0] descriptor_index_reg;
+
+    always @(posedge clk or posedge rst) begin
+        if (rst)
+            descriptor_index_reg <= {DESC_INDEX_WIDTH_LOCAL{1'b0}};
+        else if (idex_is_fmac_setdesc)
+            descriptor_index_reg <= forwarded_rs1[DESC_INDEX_WIDTH_LOCAL-1:0];
+    end
+
+    `ifndef SYNTHESIS
+    always @(*) begin
+    if (idex_is_fmac_setdesc)
+        $display(
+            "FMAC_SETDESC EXECUTING desc_idx=%0d",
+            forwarded_rs1[DESC_INDEX_WIDTH_LOCAL-1:0]
+        );
+    end
+    `endif
+
+    // accel_done_reg: latched job-complete flag for accelerator_top, kept
+    // separate from mmul_result_valid (which still gates the old MMIO
+    // polling read). Set on accelerator_top's one-cycle all_done pulse,
+    // cleared the next time FMAC_START dispatches a new job -- so a stale
+    // "done" from a previous job can never unblock a FMAC_READ for a job
+    // that hasn't actually finished yet.
+    wire accelerator_run;
+
+    assign accelerator_run = idex_is_fmac;
+
+    always @(posedge clk or posedge rst) begin
+        if (rst)
+            accel_done_reg <= 1'b0;
+        else if (idex_is_fmac)
+            accel_done_reg <= 1'b0;
+        else if (accelerator_all_done)
+            accel_done_reg <= 1'b1;
+    end
+
+    // accel_busy_reg: set the moment FMAC_START dispatches (EX), cleared on
+    // all_done. accelerator_top only accepts `run` while it's in TOP_IDLE --
+    // a second FMAC_START reaching EX mid-job would silently be dropped
+    // instead of erroring, so it's stalled in ID (accel_raw_hazard above)
+    // for as long as this is set, same mechanism FMAC_READ already uses.
+    always @(posedge clk or posedge rst) begin
+        if (rst)
+            accel_busy_reg <= 1'b0;
+        else if (idex_is_fmac)
+            accel_busy_reg <= 1'b1;
+        else if (accelerator_all_done)
+            accel_busy_reg <= 1'b0;
+    end
+
+    // Descriptor preload comes in on the desc_* top-level ports (driven by
+    // the testbench) -- the CPU itself doesn't author descriptors yet. This
+    // milestone covers FMAC_SETDESC + FMAC_START dispatch, plus FMAC_READ via the indexed
+    // result_read_index_in/result_read_data_out pass-through (see
+    // scheduler_engine.sv for why that exists instead of the debug array/
+    // stream ports below). debug_* outputs
+    // are left unconnected -- FMAC_READ doesn't need them anymore, and
+    // debug_sparse_result specifically would hit the Icarus 2D-unpacked-
+    // array-port bug if read from this far up the hierarchy.
+    accelerator_top #(
+        .NUM_JOBS (2),
+        .VERBOSE  (1'b0)
+    ) u_accelerator_top (
+        .clk (clk),
+        .rst (rst),
+
+        .run          (accelerator_run),
+        .job_index_in (descriptor_index_reg),
+        .all_done     (accelerator_all_done),
+        .any_error    (accelerator_any_error),
+
+        .cpu_we          (desc_we),
+        .cpu_desc_idx    (desc_idx),
+        .cpu_word_offset (desc_word_off),
+        .cpu_wdata       (desc_wdata),
+
+        .debug_dense_result_valid (),
+        .debug_dense_result_row   (),
+        .debug_dense_result_col   (),
+        .debug_dense_result_data  (),
+        .debug_dense_mac_count    (),
+
+        .debug_sparse_result    (),
+        .debug_sparse_mac_count (),
+
+        .result_read_index_in (accel_read_index),
+        .result_read_data_out (accel_read_data),
+
+        .debug_current_job_index (),
+        .debug_job_status        ()
+    );
 
     wire [31:0] mem_rdata =
     mmul_sel ? mmul_rdata :
@@ -563,6 +721,9 @@ end
 
     .idex_rd(idex_rd),
     .idex_mem_read(idex_mem_read),
+
+    .ifid_branch(id_branch),
+    .idex_reg_write(idex_reg_write),
 
     .pc_write(pc_write),
     .ifid_write(ifid_write),

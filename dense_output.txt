@@ -1,0 +1,129 @@
+WARNING: src/main_memory_model.sv:98: $readmemh(mem files/data_memory.mem): Not enough words in the file for the requested range [0:65535].
+[95000] MEM : Request Accepted
+        Address = 10000000
+        Bytes   = 128
+        Beats   = 16
+[145000] MEM Beat=0 Addr=10000000 RLAST=0 Data=0000000200000001
+[155000] MEM Beat=1 Addr=10000008 RLAST=0 Data=0000000400000003
+[165000] MEM Beat=2 Addr=10000010 RLAST=0 Data=0000000600000005
+[175000] MEM Beat=3 Addr=10000018 RLAST=0 Data=0000000800000007
+[185000] MEM Beat=4 Addr=10000020 RLAST=0 Data=0000000a00000009
+[195000] MEM Beat=5 Addr=10000028 RLAST=0 Data=0000000c0000000b
+[205000] MEM Beat=6 Addr=10000030 RLAST=0 Data=0000000e0000000d
+[215000] MEM Beat=7 Addr=10000038 RLAST=0 Data=000000100000000f
+[225000] MEM Beat=8 Addr=10000040 RLAST=0 Data=0000001200000011
+[235000] MEM Beat=9 Addr=10000048 RLAST=0 Data=0000001400000013
+[245000] MEM Beat=10 Addr=10000050 RLAST=0 Data=0000001600000015
+[255000] MEM Beat=11 Addr=10000058 RLAST=0 Data=0000001800000017
+[265000] MEM Beat=12 Addr=10000060 RLAST=0 Data=0000001a00000019
+[275000] MEM Beat=13 Addr=10000068 RLAST=0 Data=0000001c0000001b
+[285000] MEM Beat=14 Addr=10000070 RLAST=0 Data=0000001e0000001d
+[295000] MEM Beat=15 Addr=10000078 RLAST=1 Data=000000200000001f
+[625000] MEM : Request Accepted
+        Address = 10000080
+        Bytes   = 128
+        Beats   = 16
+[675000] MEM Beat=0 Addr=10000080 RLAST=0 Data=0000002200000021
+[685000] MEM Beat=1 Addr=10000088 RLAST=0 Data=0000002400000023
+[695000] MEM Beat=2 Addr=10000090 RLAST=0 Data=0000002600000025
+[705000] MEM Beat=3 Addr=10000098 RLAST=0 Data=0000002800000027
+[715000] MEM Beat=4 Addr=100000a0 RLAST=0 Data=0000002a00000029
+[725000] MEM Beat=5 Addr=100000a8 RLAST=0 Data=0000002c0000002b
+[735000] MEM Beat=6 Addr=100000b0 RLAST=0 Data=0000002e0000002d
+[745000] MEM Beat=7 Addr=100000b8 RLAST=0 Data=000000300000002f
+[755000] MEM Beat=8 Addr=100000c0 RLAST=0 Data=0000003200000031
+[765000] MEM Beat=9 Addr=100000c8 RLAST=0 Data=0000003400000033
+[775000] MEM Beat=10 Addr=100000d0 RLAST=0 Data=0000003600000035
+[785000] MEM Beat=11 Addr=100000d8 RLAST=0 Data=0000003800000037
+[795000] MEM Beat=12 Addr=100000e0 RLAST=0 Data=0000003a00000039
+[805000] MEM Beat=13 Addr=100000e8 RLAST=0 Data=0000003c0000003b
+[815000] MEM Beat=14 Addr=100000f0 RLAST=0 Data=0000003e0000003d
+[825000] MEM Beat=15 Addr=100000f8 RLAST=1 Data=000000400000003f
+[1155000] MEM : Request Accepted
+        Address = 10000100
+        Bytes   = 128
+        Beats   = 16
+[1205000] MEM Beat=0 Addr=10000100 RLAST=0 Data=0000000000000001
+[1215000] MEM Beat=1 Addr=10000108 RLAST=0 Data=0000000000000000
+[1225000] MEM Beat=2 Addr=10000110 RLAST=0 Data=0000000000000000
+[1235000] MEM Beat=3 Addr=10000118 RLAST=0 Data=0000000000000000
+[1245000] MEM Beat=4 Addr=10000120 RLAST=0 Data=0000000100000000
+[1255000] MEM Beat=5 Addr=10000128 RLAST=0 Data=0000000000000000
+[1265000] MEM Beat=6 Addr=10000130 RLAST=0 Data=0000000000000000
+[1275000] MEM Beat=7 Addr=10000138 RLAST=0 Data=0000000000000000
+[1285000] MEM Beat=8 Addr=10000140 RLAST=0 Data=0000000000000000
+[1295000] MEM Beat=9 Addr=10000148 RLAST=0 Data=0000000000000001
+[1305000] MEM Beat=10 Addr=10000150 RLAST=0 Data=0000000000000000
+[1315000] MEM Beat=11 Addr=10000158 RLAST=0 Data=0000000000000000
+[1325000] MEM Beat=12 Addr=10000160 RLAST=0 Data=0000000000000000
+[1335000] MEM Beat=13 Addr=10000168 RLAST=0 Data=0000000100000000
+[1345000] MEM Beat=14 Addr=10000170 RLAST=0 Data=0000000000000000
+[1355000] MEM Beat=15 Addr=10000178 RLAST=1 Data=0000000000000000
+[1685000] MEM : Request Accepted
+        Address = 10000180
+        Bytes   = 128
+        Beats   = 16
+[1735000] MEM Beat=0 Addr=10000180 RLAST=0 Data=0000000000000000
+[1745000] MEM Beat=1 Addr=10000188 RLAST=0 Data=0000000000000000
+[1755000] MEM Beat=2 Addr=10000190 RLAST=0 Data=0000000000000001
+[1765000] MEM Beat=3 Addr=10000198 RLAST=0 Data=0000000000000000
+[1775000] MEM Beat=4 Addr=100001a0 RLAST=0 Data=0000000000000000
+[1785000] MEM Beat=5 Addr=100001a8 RLAST=0 Data=0000000000000000
+[1795000] MEM Beat=6 Addr=100001b0 RLAST=0 Data=0000000100000000
+[1805000] MEM Beat=7 Addr=100001b8 RLAST=0 Data=0000000000000000
+[1815000] MEM Beat=8 Addr=100001c0 RLAST=0 Data=0000000000000000
+[1825000] MEM Beat=9 Addr=100001c8 RLAST=0 Data=0000000000000000
+[1835000] MEM Beat=10 Addr=100001d0 RLAST=0 Data=0000000000000000
+[1845000] MEM Beat=11 Addr=100001d8 RLAST=0 Data=0000000000000001
+[1855000] MEM Beat=12 Addr=100001e0 RLAST=0 Data=0000000000000000
+[1865000] MEM Beat=13 Addr=100001e8 RLAST=0 Data=0000000000000000
+[1875000] MEM Beat=14 Addr=100001f0 RLAST=0 Data=0000000000000000
+[1885000] MEM Beat=15 Addr=100001f8 RLAST=1 Data=0000000100000000
+
+============================================================
+           DENSE COMPUTE RESULT VERIFICATION
+============================================================
+Expected results        = 64
+Observed results        = 64
+Value mismatches        = 0
+Ordering errors         = 0
+
+[PASS] All compute results verified
+[PASS] Result ordering verified
+[PASS] Result values verified
+
+DENSE COMPUTE RESULT VERIFICATION : PASS
+============================================================
+
+
+============================================================
+              DENSE SUBSYSTEM PERFORMANCE
+============================================================
+Matrix size             = 8x8
+Transfer start cycle    = 6
+Transfer done cycle     = 218
+Transfer cycles         = 212
+Compute start cycle     = 219
+Compute done cycle      = 2460
+Compute cycles          = 2241
+Test start cycle       = 2
+Dense done cycle       = 2462
+End-to-end cycles      = 2460
+A scratchpad reads     = 512
+B scratchpad reads     = 512
+MAC operations         = 512
+Results produced       = 64
+MACs / compute cycle   = 0.228469
+Cycles / MAC           = 4.376953
+Cycles / result        = 35.015625
+============================================================
+
+
+====================================================
+        DENSE SUBSYSTEM INTEGRATION RESULTS
+====================================================
+
+DENSE SUBSYSTEM MILESTONE 1 : PASS
+====================================================
+
+verification/tb/dense_subsystem_wrapper_tb.sv:1202: $finish called at 24665000 (1ps)

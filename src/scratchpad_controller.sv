@@ -192,16 +192,6 @@ always_comb begin
         WRITE_LOW:
         begin
 
-            `ifndef SYNTHESIS
-$display(
-    "[SPAD_WRITE] t=%0t bank=%0d addr=%0d data=%0d phase=LOW",
-    $time,
-    dma_bank_reg[1:0],
-    base_spad_address,
-    $signed(dma_write_data_reg[31:0])
-);
-`endif
-
             next_state = WRITE_HIGH;
 
         end
@@ -212,16 +202,6 @@ $display(
 
         WRITE_HIGH:
         begin
-
-            `ifndef SYNTHESIS
-$display(
-    "[SPAD_WRITE] t=%0t bank=%0d addr=%0d data=%0d phase=HIGH",
-    $time,
-    dma_bank_reg[1:0],
-    base_spad_address + 1'b1,
-    $signed(dma_write_data_reg[63:32])
-);
-`endif
 
             next_state = IDLE;
 

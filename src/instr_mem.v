@@ -8,7 +8,7 @@ module instr_mem (
    `ifndef SYNTHESIS
 initial begin
     $display("instr_mem: attempting to load instruction_memory.mem...");
-    $readmemh("instruction_memory.mem", mem);
+    $readmemh("mem files/instruction_memory.mem", mem);
     $display("instr_mem: load complete.");
 end
 `endif

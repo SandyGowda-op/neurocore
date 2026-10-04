@@ -109,6 +109,14 @@ module compute_controller #(
 
 );
 
+    logic [31:0] clear_acc_count;
+    logic [31:0] issue_read_count;
+    logic [31:0] wait_spad1_count;
+    logic [31:0] wait_spad2_count;
+    logic [31:0] capture_result_count;
+    logic [31:0] next_output_count;
+    logic [31:0] complete_count;
+
 //==============================================================================
 // Parameter Checking
 //==============================================================================
@@ -607,19 +615,7 @@ always_comb begin
             spad_b_en   = 1'b1;
             spad_b_addr = current_b_addr;
 
-        `ifndef SYNTHESIS
-
-            $display(
-                "[SPAD_ISSUE] t=%0t i=%0d j=%0d k=%0d A_ADDR=%0d B_ADDR=%0d",
-                $time,
-                i,
-                j,
-                k,
-                current_a_addr,
-                current_b_addr
-            );
-
-        `endif
+        
 
         end
 
@@ -633,20 +629,6 @@ always_comb begin
 
             mac_enable = 1'b1;
 
-        `ifndef SYNTHESIS
-
-            $display(
-                "[MAC_DEBUG] t=%0t i=%0d j=%0d k=%0d A=%0d B=%0d ACC_BEFORE=%0d",
-                $time,
-                i,
-                j,
-                k,
-                $signed(spad_a_rdata),
-                $signed(spad_b_rdata),
-                $signed(mac_accumulator)
-            );
-
-        `endif
 
         end
 
@@ -715,30 +697,7 @@ always_ff @(posedge clk) begin
 
 end
 
-//==============================================================================
-// Temporary MAC Debug
-//==============================================================================
 
-`ifndef SYNTHESIS
-always_ff @(posedge clk) begin
-
-    if (!rst && state == MAC) begin
-
-        $display(
-            "[MAC_DEBUG] t=%0t i=%0d j=%0d k=%0d A=%0d B=%0d ACC=%0d",
-            $time,
-            i,
-            j,
-            k,
-            $signed(spad_a_rdata),
-            $signed(spad_b_rdata),
-            $signed(mac_accumulator)
-        );
-
-    end
-
-end
-`endif
 
 //==============================================================================
 // Research Instrumentation
@@ -748,25 +707,36 @@ always_ff @(posedge clk) begin
 
     if (rst) begin
 
-        cycle_count  <= 32'd0;
-        a_read_count <= 32'd0;
-        b_read_count <= 32'd0;
-        mac_count    <= 32'd0;
-        output_count <= 32'd0;
+        cycle_count        <= 32'd0;
+
+        a_read_count       <= 32'd0;
+        b_read_count       <= 32'd0;
+
+        mac_count          <= 32'd0;
+        output_count       <= 32'd0;
+
+        clear_acc_count    <= 32'd0;
+        issue_read_count   <= 32'd0;
+        wait_spad1_count   <= 32'd0;
+        wait_spad2_count   <= 32'd0;
+        capture_result_count <= 32'd0;
+        next_output_count  <= 32'd0;
+        complete_count     <= 32'd0;
 
     end
 
     else begin
 
         //------------------------------------------------------
-        // Count active computation cycles.
+        // Total active compute cycles
         //------------------------------------------------------
 
         if (state != IDLE)
             cycle_count <= cycle_count + 1'b1;
 
+
         //------------------------------------------------------
-        // Count scratchpad reads.
+        // Scratchpad read requests
         //------------------------------------------------------
 
         if (state == ISSUE_READ) begin
@@ -776,19 +746,47 @@ always_ff @(posedge clk) begin
 
         end
 
+
         //------------------------------------------------------
-        // Count actual MAC operations.
+        // MAC operations
         //------------------------------------------------------
 
         if (state == MAC)
             mac_count <= mac_count + 1'b1;
 
+
         //------------------------------------------------------
-        // Count completed output elements.
+        // Results produced
         //------------------------------------------------------
 
         if (state == CAPTURE_RESULT)
             output_count <= output_count + 1'b1;
+
+
+        //------------------------------------------------------
+        // State utilization
+        //------------------------------------------------------
+
+        if (state == CLEAR_ACC)
+            clear_acc_count <= clear_acc_count + 1'b1;
+
+        if (state == ISSUE_READ)
+            issue_read_count <= issue_read_count + 1'b1;
+
+        if (state == WAIT_SPAD_1)
+            wait_spad1_count <= wait_spad1_count + 1'b1;
+
+        if (state == WAIT_SPAD_2)
+            wait_spad2_count <= wait_spad2_count + 1'b1;
+
+        if (state == CAPTURE_RESULT)
+            capture_result_count <= capture_result_count + 1'b1;
+
+        if (state == NEXT_OUTPUT)
+            next_output_count <= next_output_count + 1'b1;
+
+        if (state == COMPLETE)
+            complete_count <= complete_count + 1'b1;
 
     end
 

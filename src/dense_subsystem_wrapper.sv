@@ -41,7 +41,8 @@ module dense_subsystem_wrapper #(
 
     parameter int DATA_WIDTH      = 32,
     parameter int SPAD_DEPTH      = 64,
-    parameter int SPAD_ADDR_WIDTH = 6
+    parameter int SPAD_ADDR_WIDTH = 6,
+    parameter bit VERBOSE         = 1'b0
 
 )(
     //==========================================================================
@@ -74,7 +75,22 @@ module dense_subsystem_wrapper #(
     output logic [3:0]  debug_spad_bank,
     output logic [31:0] debug_spad_address,
     output logic [63:0] debug_spad_write_data,
-    output logic        debug_spad_write_enable
+    output logic        debug_spad_write_enable,
+
+    //==========================================================================
+    // Compute Result Debug / Observation
+    //==========================================================================
+
+    output logic              debug_compute_result_valid,
+    output logic [15:0]       debug_compute_result_row,
+    output logic [15:0]       debug_compute_result_col,
+    output logic signed [63:0] debug_compute_result_data,
+
+    output logic [31:0] debug_compute_cycle_count,
+output logic [31:0] debug_compute_a_read_count,
+output logic [31:0] debug_compute_b_read_count,
+output logic [31:0] debug_compute_mac_count,
+output logic [31:0] debug_compute_output_count
 
 );
 
@@ -165,10 +181,16 @@ module dense_subsystem_wrapper #(
     //==========================================================================
 
     logic          compute_start;
-    logic          compute_done;
-    logic          compute_busy;
+logic          compute_done;
+logic          compute_busy;
 
-    tile_request_t compute_request;
+tile_request_t compute_request;
+
+// Compute result interface
+logic                         compute_result_valid;
+logic [15:0]                  compute_result_row;
+logic [15:0]                  compute_result_col;
+logic signed [63:0]           compute_result_data;
 
 
     //==========================================================================
@@ -182,6 +204,12 @@ module dense_subsystem_wrapper #(
     logic                         compute_spad_b_en;
     logic [SPAD_ADDR_WIDTH-1:0]   compute_spad_b_addr;
     logic [DATA_WIDTH-1:0]        compute_spad_b_rdata;
+
+    logic [31:0] compute_cycle_count;
+logic [31:0] compute_a_read_count;
+logic [31:0] compute_b_read_count;
+logic [31:0] compute_mac_count;
+logic [31:0] compute_output_count;
 
     //==========================================================================
     // Dense Scheduler
@@ -294,20 +322,20 @@ compute_controller #(
     // Result
     //------------------------------------------------------
 
-    .result_valid (),
-    .result_row   (),
-    .result_col   (),
-    .result_data  (),
+    .result_valid (compute_result_valid),
+    .result_row   (compute_result_row),
+    .result_col   (compute_result_col),
+    .result_data  (compute_result_data),
 
     //------------------------------------------------------
     // Instrumentation
     //------------------------------------------------------
 
-    .cycle_count  (),
-    .a_read_count (),
-    .b_read_count (),
-    .mac_count    (),
-    .output_count ()
+    .cycle_count   (compute_cycle_count),
+.a_read_count  (compute_a_read_count),
+.b_read_count  (compute_b_read_count),
+.mac_count     (compute_mac_count),
+.output_count  (compute_output_count)
 );
 
     //==========================================================================
@@ -370,7 +398,6 @@ compute_controller #(
         .mem_rvalid         (mem_rvalid),
         .mem_rdata          (mem_rdata),
         .mem_rlast          (mem_rlast),
-        .mem_rready(mem_rready),
 
         // Scratchpad interface
         .spad_write_enable  (spad_write_enable),
@@ -389,9 +416,11 @@ compute_controller #(
     //==========================================================================
 
     main_memory_model #(
+        .MEMORY_INIT_FILE("mem files/dense_data_memory.mem"),
         .DATA_WIDTH     (64),
         .MEMORY_SIZE    (65536),
-        .MEMORY_LATENCY (3)
+        .MEMORY_LATENCY (3),
+        .VERBOSE        (VERBOSE)
     ) u_main_memory (
 
         .clk            (clk),
@@ -410,8 +439,7 @@ compute_controller #(
         // Read data channel
         .mem_rvalid     (mem_rvalid),
         .mem_rdata      (mem_rdata),
-        .mem_rlast      (mem_rlast),
-        .mem_rready(mem_rready)
+        .mem_rlast      (mem_rlast)
     );
 
     //==========================================================================
@@ -559,6 +587,17 @@ compute_controller #(
         debug_spad_address      = spad_address;
         debug_spad_write_data   = spad_write_data;
         debug_spad_write_enable = spad_write_enable;
+
+        debug_compute_result_valid = compute_result_valid;
+    debug_compute_result_row   = compute_result_row;
+    debug_compute_result_col   = compute_result_col;
+    debug_compute_result_data  = compute_result_data;
+
+    debug_compute_cycle_count    = compute_cycle_count;
+debug_compute_a_read_count   = compute_a_read_count;
+debug_compute_b_read_count   = compute_b_read_count;
+debug_compute_mac_count      = compute_mac_count;
+debug_compute_output_count   = compute_output_count;
 
     end
 

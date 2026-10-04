@@ -552,34 +552,4 @@ begin
 end
 
 
-//==============================================================================
-// Simulation Instrumentation
-//==============================================================================
-
-`ifndef SYNTHESIS
-
-always_ff @(posedge clk)
-begin
-
-    $display(
-        "[SCHED_DEBUG] t=%0t state=%0d start=%0b walker_start=%0b walker_next=%0b transfer_valid=%0b transfer_ready=%0b transfer_done=%0b compute_start=%0b compute_done=%0b last_tile=%0b dense_done=%0b",
-        $time,
-        state,
-        start,
-        walker_start,
-        walker_next,
-        transfer_valid,
-        transfer_ready,
-        transfer_done,
-        compute_start,
-        compute_done,
-        current_request.last_tile,
-        dense_done
-    );
-
-end
-
-`endif
-
-
 endmodule

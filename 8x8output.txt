@@ -1,0 +1,1538 @@
+
+====================================================
+SPARSE 8x8 FINAL FUNCTIONAL + METRICS TEST
+====================================================
+[READDBG] t=45000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=55000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+
+----------------------------------------------
+Submitting Sparse Tile Request
+----------------------------------------------
+[REQ] A    addr=00000000 bytes=128
+[REQ] B    addr=00000080 bytes=256
+[REQ] META addr=00000180 bytes=64
+[READDBG] t=65000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[REQTB] Handshake at t=75000 VALID=1 READY=1
+[READDBG] t=75000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[PASS] Sparse request accepted
+
+----------------------------------------------
+Waiting for A/B/Metadata Transfer
+----------------------------------------------
+[PASS] Transfer busy asserted at cycle 4
+[MEM_REQ] t=85000 addr=00000000 bytes=128 beats=16
+[READDBG] t=85000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=95000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=105000 addr=00000000 data=000000140000000a last=0
+[READDBG] t=105000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=115000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=115000 addr=00000000 data=000000280000001e last=0
+[DMA->SPAD] t=115000 bank=0 addr=00000000 data=000000140000000a
+[DMA->SPAD] t=125000 bank=0 addr=00000008 data=000000280000001e
+[MEM->DMA] t=125000 addr=00000000 data=0000003c00000032 last=0
+[READDBG] t=125000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=135000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=135000 addr=00000000 data=0000005000000046 last=0
+[DMA->SPAD] t=135000 bank=0 addr=00000008 data=000000280000001e
+[DMA->SPAD] t=145000 bank=0 addr=00000008 data=000000280000001e
+[MEM->DMA] t=145000 addr=00000000 data=0000000b0000005a last=0
+[READDBG] t=145000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=155000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=155000 addr=00000000 data=0000000d0000000c last=0
+[DMA->SPAD] t=155000 bank=0 addr=00000010 data=0000003c00000032
+[DMA->SPAD] t=165000 bank=0 addr=00000010 data=0000003c00000032
+[MEM->DMA] t=165000 addr=00000000 data=0000000f0000000e last=0
+[READDBG] t=165000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=175000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=175000 addr=00000000 data=0000001100000010 last=0
+[DMA->SPAD] t=175000 bank=0 addr=00000010 data=0000003c00000032
+[DMA->SPAD] t=185000 bank=0 addr=00000018 data=0000005000000046
+[MEM->DMA] t=185000 addr=00000000 data=0000001300000012 last=0
+[READDBG] t=185000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=195000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=195000 addr=00000000 data=0000001500000014 last=0
+[DMA->SPAD] t=195000 bank=0 addr=00000018 data=0000005000000046
+[DMA->SPAD] t=205000 bank=0 addr=00000018 data=0000005000000046
+[MEM->DMA] t=205000 addr=00000000 data=0000001700000016 last=0
+[READDBG] t=205000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=215000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=215000 addr=00000000 data=0000001900000018 last=0
+[DMA->SPAD] t=215000 bank=0 addr=00000020 data=0000000b0000005a
+[DMA->SPAD] t=225000 bank=0 addr=00000020 data=0000000b0000005a
+[MEM->DMA] t=225000 addr=00000000 data=0000001b0000001a last=0
+[READDBG] t=225000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=235000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=235000 addr=00000000 data=0000001d0000001c last=0
+[DMA->SPAD] t=235000 bank=0 addr=00000020 data=0000000b0000005a
+[DMA->SPAD] t=245000 bank=0 addr=00000028 data=0000000d0000000c
+[MEM->DMA] t=245000 addr=00000000 data=000000200000001f last=0
+[READDBG] t=245000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=255000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=255000 addr=00000000 data=0000002200000021 last=1
+[DMA->SPAD] t=255000 bank=0 addr=00000028 data=0000000d0000000c
+[DMA->SPAD] t=265000 bank=0 addr=00000028 data=0000000d0000000c
+[READDBG] t=265000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=275000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=275000 bank=0 addr=00000030 data=0000000f0000000e
+[DMA->SPAD] t=285000 bank=0 addr=00000030 data=0000000f0000000e
+[READDBG] t=285000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=295000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=295000 bank=0 addr=00000030 data=0000000f0000000e
+[DMA->SPAD] t=305000 bank=0 addr=00000038 data=0000001100000010
+[READDBG] t=305000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=315000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=315000 bank=0 addr=00000038 data=0000001100000010
+[DMA->SPAD] t=325000 bank=0 addr=00000038 data=0000001100000010
+[READDBG] t=325000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=335000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=335000 bank=0 addr=00000040 data=0000001300000012
+[DMA->SPAD] t=345000 bank=0 addr=00000040 data=0000001300000012
+[READDBG] t=345000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=355000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=355000 bank=0 addr=00000040 data=0000001300000012
+[DMA->SPAD] t=365000 bank=0 addr=00000048 data=0000001500000014
+[READDBG] t=365000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=375000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=375000 bank=0 addr=00000048 data=0000001500000014
+[DMA->SPAD] t=385000 bank=0 addr=00000048 data=0000001500000014
+[READDBG] t=385000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=395000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=395000 bank=0 addr=00000050 data=0000001700000016
+[DMA->SPAD] t=405000 bank=0 addr=00000050 data=0000001700000016
+[READDBG] t=405000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=415000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=415000 bank=0 addr=00000050 data=0000001700000016
+[DMA->SPAD] t=425000 bank=0 addr=00000058 data=0000001900000018
+[READDBG] t=425000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=435000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=435000 bank=0 addr=00000058 data=0000001900000018
+[DMA->SPAD] t=445000 bank=0 addr=00000058 data=0000001900000018
+[READDBG] t=445000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=455000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=455000 bank=0 addr=00000060 data=0000001b0000001a
+[DMA->SPAD] t=465000 bank=0 addr=00000060 data=0000001b0000001a
+[READDBG] t=465000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=475000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=475000 bank=0 addr=00000060 data=0000001b0000001a
+[DMA->SPAD] t=485000 bank=0 addr=00000068 data=0000001d0000001c
+[READDBG] t=485000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=495000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=495000 bank=0 addr=00000068 data=0000001d0000001c
+[DMA->SPAD] t=505000 bank=0 addr=00000068 data=0000001d0000001c
+[READDBG] t=505000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=515000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=515000 bank=0 addr=00000070 data=000000200000001f
+[DMA->SPAD] t=525000 bank=0 addr=00000070 data=000000200000001f
+[READDBG] t=525000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=535000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=535000 bank=0 addr=00000070 data=000000200000001f
+[DMA->SPAD] t=545000 bank=0 addr=00000078 data=0000002200000021
+[READDBG] t=545000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=555000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=555000 bank=0 addr=00000078 data=0000002200000021
+[DMA->SPAD] t=565000 bank=0 addr=00000078 data=0000002200000021
+[READDBG] t=565000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=575000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM_REQ] t=585000 addr=00000080 bytes=128 beats=16
+[READDBG] t=585000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=595000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=605000 addr=00000000 data=0000000200000001 last=0
+[READDBG] t=605000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=615000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=615000 addr=00000000 data=0000000400000003 last=0
+[DMA->SPAD] t=615000 bank=1 addr=00000000 data=0000000200000001
+[DMA->SPAD] t=625000 bank=1 addr=00000008 data=0000000400000003
+[MEM->DMA] t=625000 addr=00000000 data=0000000600000005 last=0
+[READDBG] t=625000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=635000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=635000 addr=00000000 data=0000000800000007 last=0
+[DMA->SPAD] t=635000 bank=1 addr=00000008 data=0000000400000003
+[DMA->SPAD] t=645000 bank=1 addr=00000008 data=0000000400000003
+[MEM->DMA] t=645000 addr=00000000 data=0000000a00000009 last=0
+[READDBG] t=645000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=655000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=655000 addr=00000000 data=0000000c0000000b last=0
+[DMA->SPAD] t=655000 bank=1 addr=00000010 data=0000000600000005
+[DMA->SPAD] t=665000 bank=1 addr=00000010 data=0000000600000005
+[MEM->DMA] t=665000 addr=00000000 data=0000000e0000000d last=0
+[READDBG] t=665000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=675000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=675000 addr=00000000 data=000000100000000f last=0
+[DMA->SPAD] t=675000 bank=1 addr=00000010 data=0000000600000005
+[DMA->SPAD] t=685000 bank=1 addr=00000018 data=0000000800000007
+[MEM->DMA] t=685000 addr=00000000 data=0000001200000011 last=0
+[READDBG] t=685000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=695000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=695000 addr=00000000 data=0000001400000013 last=0
+[DMA->SPAD] t=695000 bank=1 addr=00000018 data=0000000800000007
+[DMA->SPAD] t=705000 bank=1 addr=00000018 data=0000000800000007
+[MEM->DMA] t=705000 addr=00000000 data=0000001600000015 last=0
+[READDBG] t=705000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=715000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=715000 addr=00000000 data=0000001800000017 last=0
+[DMA->SPAD] t=715000 bank=1 addr=00000020 data=0000000a00000009
+[DMA->SPAD] t=725000 bank=1 addr=00000020 data=0000000a00000009
+[MEM->DMA] t=725000 addr=00000000 data=0000001a00000019 last=0
+[READDBG] t=725000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=735000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=735000 addr=00000000 data=0000001c0000001b last=0
+[DMA->SPAD] t=735000 bank=1 addr=00000020 data=0000000a00000009
+[DMA->SPAD] t=745000 bank=1 addr=00000028 data=0000000c0000000b
+[MEM->DMA] t=745000 addr=00000000 data=0000001e0000001d last=0
+[READDBG] t=745000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=755000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=755000 addr=00000000 data=000000200000001f last=1
+[DMA->SPAD] t=755000 bank=1 addr=00000028 data=0000000c0000000b
+[DMA->SPAD] t=765000 bank=1 addr=00000028 data=0000000c0000000b
+[READDBG] t=765000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=775000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=775000 bank=1 addr=00000030 data=0000000e0000000d
+[DMA->SPAD] t=785000 bank=1 addr=00000030 data=0000000e0000000d
+[READDBG] t=785000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=795000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=795000 bank=1 addr=00000030 data=0000000e0000000d
+[DMA->SPAD] t=805000 bank=1 addr=00000038 data=000000100000000f
+[READDBG] t=805000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=815000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=815000 bank=1 addr=00000038 data=000000100000000f
+[DMA->SPAD] t=825000 bank=1 addr=00000038 data=000000100000000f
+[READDBG] t=825000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=835000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=835000 bank=1 addr=00000040 data=0000001200000011
+[DMA->SPAD] t=845000 bank=1 addr=00000040 data=0000001200000011
+[READDBG] t=845000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=855000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=855000 bank=1 addr=00000040 data=0000001200000011
+[DMA->SPAD] t=865000 bank=1 addr=00000048 data=0000001400000013
+[READDBG] t=865000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=875000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=875000 bank=1 addr=00000048 data=0000001400000013
+[DMA->SPAD] t=885000 bank=1 addr=00000048 data=0000001400000013
+[READDBG] t=885000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=895000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=895000 bank=1 addr=00000050 data=0000001600000015
+[DMA->SPAD] t=905000 bank=1 addr=00000050 data=0000001600000015
+[READDBG] t=905000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=915000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=915000 bank=1 addr=00000050 data=0000001600000015
+[DMA->SPAD] t=925000 bank=1 addr=00000058 data=0000001800000017
+[READDBG] t=925000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=935000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=935000 bank=1 addr=00000058 data=0000001800000017
+[DMA->SPAD] t=945000 bank=1 addr=00000058 data=0000001800000017
+[READDBG] t=945000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=955000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=955000 bank=1 addr=00000060 data=0000001a00000019
+[DMA->SPAD] t=965000 bank=1 addr=00000060 data=0000001a00000019
+[READDBG] t=965000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=975000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=975000 bank=1 addr=00000060 data=0000001a00000019
+[DMA->SPAD] t=985000 bank=1 addr=00000068 data=0000001c0000001b
+[READDBG] t=985000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=995000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=995000 bank=1 addr=00000068 data=0000001c0000001b
+[DMA->SPAD] t=1005000 bank=1 addr=00000068 data=0000001c0000001b
+[READDBG] t=1005000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1015000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1015000 bank=1 addr=00000070 data=0000001e0000001d
+[DMA->SPAD] t=1025000 bank=1 addr=00000070 data=0000001e0000001d
+[READDBG] t=1025000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1035000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1035000 bank=1 addr=00000070 data=0000001e0000001d
+[DMA->SPAD] t=1045000 bank=1 addr=00000078 data=000000200000001f
+[READDBG] t=1045000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1055000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1055000 bank=1 addr=00000078 data=000000200000001f
+[DMA->SPAD] t=1065000 bank=1 addr=00000078 data=000000200000001f
+[READDBG] t=1065000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1075000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM_REQ] t=1085000 addr=00000100 bytes=128 beats=16
+[READDBG] t=1085000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1095000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1105000 addr=00000000 data=0000002200000021 last=0
+[READDBG] t=1105000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1115000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1115000 addr=00000000 data=0000002400000023 last=0
+[DMA->SPAD] t=1115000 bank=1 addr=00000080 data=0000002200000021
+[DMA->SPAD] t=1125000 bank=1 addr=00000088 data=0000002400000023
+[MEM->DMA] t=1125000 addr=00000000 data=0000002600000025 last=0
+[READDBG] t=1125000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1135000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1135000 addr=00000000 data=0000002800000027 last=0
+[DMA->SPAD] t=1135000 bank=1 addr=00000088 data=0000002400000023
+[DMA->SPAD] t=1145000 bank=1 addr=00000088 data=0000002400000023
+[MEM->DMA] t=1145000 addr=00000000 data=0000002a00000029 last=0
+[READDBG] t=1145000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1155000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1155000 addr=00000000 data=0000002c0000002b last=0
+[DMA->SPAD] t=1155000 bank=1 addr=00000090 data=0000002600000025
+[DMA->SPAD] t=1165000 bank=1 addr=00000090 data=0000002600000025
+[MEM->DMA] t=1165000 addr=00000000 data=0000002e0000002d last=0
+[READDBG] t=1165000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1175000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1175000 addr=00000000 data=000000300000002f last=0
+[DMA->SPAD] t=1175000 bank=1 addr=00000090 data=0000002600000025
+[DMA->SPAD] t=1185000 bank=1 addr=00000098 data=0000002800000027
+[MEM->DMA] t=1185000 addr=00000000 data=0000003200000031 last=0
+[READDBG] t=1185000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1195000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1195000 addr=00000000 data=0000003400000033 last=0
+[DMA->SPAD] t=1195000 bank=1 addr=00000098 data=0000002800000027
+[DMA->SPAD] t=1205000 bank=1 addr=00000098 data=0000002800000027
+[MEM->DMA] t=1205000 addr=00000000 data=0000003600000035 last=0
+[READDBG] t=1205000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1215000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1215000 addr=00000000 data=0000003800000037 last=0
+[DMA->SPAD] t=1215000 bank=1 addr=000000a0 data=0000002a00000029
+[DMA->SPAD] t=1225000 bank=1 addr=000000a0 data=0000002a00000029
+[MEM->DMA] t=1225000 addr=00000000 data=0000003a00000039 last=0
+[READDBG] t=1225000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1235000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1235000 addr=00000000 data=0000003c0000003b last=0
+[DMA->SPAD] t=1235000 bank=1 addr=000000a0 data=0000002a00000029
+[DMA->SPAD] t=1245000 bank=1 addr=000000a8 data=0000002c0000002b
+[MEM->DMA] t=1245000 addr=00000000 data=0000003e0000003d last=0
+[READDBG] t=1245000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1255000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1255000 addr=00000000 data=000000400000003f last=1
+[DMA->SPAD] t=1255000 bank=1 addr=000000a8 data=0000002c0000002b
+[DMA->SPAD] t=1265000 bank=1 addr=000000a8 data=0000002c0000002b
+[READDBG] t=1265000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1275000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1275000 bank=1 addr=000000b0 data=0000002e0000002d
+[DMA->SPAD] t=1285000 bank=1 addr=000000b0 data=0000002e0000002d
+[READDBG] t=1285000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1295000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1295000 bank=1 addr=000000b0 data=0000002e0000002d
+[DMA->SPAD] t=1305000 bank=1 addr=000000b8 data=000000300000002f
+[READDBG] t=1305000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1315000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1315000 bank=1 addr=000000b8 data=000000300000002f
+[DMA->SPAD] t=1325000 bank=1 addr=000000b8 data=000000300000002f
+[READDBG] t=1325000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1335000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1335000 bank=1 addr=000000c0 data=0000003200000031
+[DMA->SPAD] t=1345000 bank=1 addr=000000c0 data=0000003200000031
+[READDBG] t=1345000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1355000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1355000 bank=1 addr=000000c0 data=0000003200000031
+[DMA->SPAD] t=1365000 bank=1 addr=000000c8 data=0000003400000033
+[READDBG] t=1365000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1375000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1375000 bank=1 addr=000000c8 data=0000003400000033
+[DMA->SPAD] t=1385000 bank=1 addr=000000c8 data=0000003400000033
+[READDBG] t=1385000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1395000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1395000 bank=1 addr=000000d0 data=0000003600000035
+[DMA->SPAD] t=1405000 bank=1 addr=000000d0 data=0000003600000035
+[READDBG] t=1405000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1415000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1415000 bank=1 addr=000000d0 data=0000003600000035
+[DMA->SPAD] t=1425000 bank=1 addr=000000d8 data=0000003800000037
+[READDBG] t=1425000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1435000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1435000 bank=1 addr=000000d8 data=0000003800000037
+[DMA->SPAD] t=1445000 bank=1 addr=000000d8 data=0000003800000037
+[READDBG] t=1445000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1455000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1455000 bank=1 addr=000000e0 data=0000003a00000039
+[DMA->SPAD] t=1465000 bank=1 addr=000000e0 data=0000003a00000039
+[READDBG] t=1465000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1475000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1475000 bank=1 addr=000000e0 data=0000003a00000039
+[DMA->SPAD] t=1485000 bank=1 addr=000000e8 data=0000003c0000003b
+[READDBG] t=1485000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1495000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1495000 bank=1 addr=000000e8 data=0000003c0000003b
+[DMA->SPAD] t=1505000 bank=1 addr=000000e8 data=0000003c0000003b
+[READDBG] t=1505000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1515000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1515000 bank=1 addr=000000f0 data=0000003e0000003d
+[DMA->SPAD] t=1525000 bank=1 addr=000000f0 data=0000003e0000003d
+[READDBG] t=1525000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1535000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1535000 bank=1 addr=000000f0 data=0000003e0000003d
+[DMA->SPAD] t=1545000 bank=1 addr=000000f8 data=000000400000003f
+[READDBG] t=1545000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1555000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1555000 bank=1 addr=000000f8 data=000000400000003f
+[DMA->SPAD] t=1565000 bank=1 addr=000000f8 data=000000400000003f
+[READDBG] t=1565000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1575000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM_REQ] t=1585000 addr=00000180 bytes=64 beats=8
+[READDBG] t=1585000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1595000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1605000 addr=00000000 data=0000000100000002 last=0
+[READDBG] t=1605000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1615000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1615000 addr=00000000 data=0000000400000003 last=0
+[DMA->SPAD] t=1615000 bank=2 addr=00000000 data=0000000100000002
+[DMA->SPAD] t=1625000 bank=2 addr=00000008 data=0000000400000003
+[MEM->DMA] t=1625000 addr=00000000 data=0000000000000002 last=0
+[READDBG] t=1625000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1635000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1635000 addr=00000000 data=0000000100000003 last=0
+[DMA->SPAD] t=1635000 bank=2 addr=00000008 data=0000000400000003
+[DMA->SPAD] t=1645000 bank=2 addr=00000008 data=0000000400000003
+[MEM->DMA] t=1645000 addr=00000000 data=0000000400000001 last=0
+[READDBG] t=1645000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1655000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1655000 addr=00000000 data=0000000000000003 last=0
+[DMA->SPAD] t=1655000 bank=2 addr=00000010 data=0000000000000002
+[DMA->SPAD] t=1665000 bank=2 addr=00000010 data=0000000000000002
+[MEM->DMA] t=1665000 addr=00000000 data=0000000300000000 last=0
+[READDBG] t=1665000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1675000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[MEM->DMA] t=1675000 addr=00000000 data=0000000200000003 last=1
+[DMA->SPAD] t=1675000 bank=2 addr=00000010 data=0000000000000002
+[DMA->SPAD] t=1685000 bank=2 addr=00000018 data=0000000100000003
+[READDBG] t=1685000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1695000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1695000 bank=2 addr=00000018 data=0000000100000003
+[DMA->SPAD] t=1705000 bank=2 addr=00000018 data=0000000100000003
+[READDBG] t=1705000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1715000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1715000 bank=2 addr=00000020 data=0000000400000001
+[DMA->SPAD] t=1725000 bank=2 addr=00000020 data=0000000400000001
+[READDBG] t=1725000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1735000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1735000 bank=2 addr=00000020 data=0000000400000001
+[DMA->SPAD] t=1745000 bank=2 addr=00000028 data=0000000000000003
+[READDBG] t=1745000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1755000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1755000 bank=2 addr=00000028 data=0000000000000003
+[DMA->SPAD] t=1765000 bank=2 addr=00000028 data=0000000000000003
+[READDBG] t=1765000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1775000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1775000 bank=2 addr=00000030 data=0000000300000000
+[DMA->SPAD] t=1785000 bank=2 addr=00000030 data=0000000300000000
+[READDBG] t=1785000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1795000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1795000 bank=2 addr=00000030 data=0000000300000000
+[DMA->SPAD] t=1805000 bank=2 addr=00000038 data=0000000200000003
+[READDBG] t=1805000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1815000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DMA->SPAD] t=1815000 bank=2 addr=00000038 data=0000000200000003
+[DMA->SPAD] t=1825000 bank=2 addr=00000038 data=0000000200000003
+[READDBG] t=1825000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[READDBG] t=1835000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[PASS] Transfer completed in 178 cycles
+[PASS] Memory request count = 4
+[PASS] Memory response beats = 56
+[DBG] compute_start ASSERTED at cycle 180
+[DBG] pre-sample: read_state=0 transfer_latched=0
+[DBG] compute_start SAMPLE: read_state=0 transfer_latched=0
+[READDBG] t=1845000 start=1 latch=0 state=0 A_en=0 B_en=0 META_en=0
+[DBG] READ FSM still IDLE; holding compute_start
+[DBG] post-start: read_state=0 transfer_latched=1
+[READDBG] t=1855000 start=1 latch=1 state=0 A_en=0 B_en=0 META_en=0
+[DBG] compute_start DEASSERTED at cycle 182
+[DBG] Before compute wait: read_state=1 transfer_latched=0 sparse_compute_start=0
+[READDBG] t=1865000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=1875000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=1885000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=1895000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=1905000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=1915000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=1925000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=1935000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=1945000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=1955000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=1965000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=1975000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=1985000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=1995000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2005000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2015000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2025000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2035000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2045000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2055000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2065000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2075000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2085000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2095000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2105000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2115000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2125000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2135000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2145000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2155000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2165000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2175000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2185000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2195000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2205000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2215000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2225000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2235000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2245000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2255000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2265000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2275000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2285000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2295000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2305000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2315000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2325000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2335000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2345000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2355000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2365000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2375000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2385000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2395000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2405000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2415000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2425000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2435000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2445000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2455000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2465000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2475000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2485000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2495000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2505000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2515000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2525000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2535000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2545000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2555000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2565000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2575000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2585000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2595000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2605000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2615000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2625000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2635000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2645000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2655000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2665000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2675000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2685000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2695000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2705000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2715000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2725000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2735000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2745000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2755000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2765000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2775000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2785000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2795000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2805000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2815000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2825000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2835000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2845000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2855000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2865000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2875000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2885000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2895000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2905000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2915000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2925000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2935000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2945000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2955000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=2965000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=2975000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=2985000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=2995000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=3005000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=3015000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=3025000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=3035000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=3045000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=3055000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=3065000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=3075000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=3085000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=3095000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=3105000 start=0 latch=0 state=1 A_en=1 B_en=0 META_en=0
+[READDBG] t=3115000 start=0 latch=0 state=2 A_en=0 B_en=0 META_en=0
+[READDBG] t=3125000 start=0 latch=0 state=3 A_en=0 B_en=0 META_en=0
+[READDBG] t=3135000 start=0 latch=0 state=4 A_en=0 B_en=0 META_en=0
+[READDBG] t=3145000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3155000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3165000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3175000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3185000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3195000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3205000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3215000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3225000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3235000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3245000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3255000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3265000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3275000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3285000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3295000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3305000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3315000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3325000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3335000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3345000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3355000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3365000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3375000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3385000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3395000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3405000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3415000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3425000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3435000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3445000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3455000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3465000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3475000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3485000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3495000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3505000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3515000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3525000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3535000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3545000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3555000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3565000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3575000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3585000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3595000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3605000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3615000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3625000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3635000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3645000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3655000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3665000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3675000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3685000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3695000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3705000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3715000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3725000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3735000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3745000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3755000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3765000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3775000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3785000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3795000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3805000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3815000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3825000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3835000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3845000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3855000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3865000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3875000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3885000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3895000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3905000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3915000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3925000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3935000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3945000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3955000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=3965000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=3975000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=3985000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=3995000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4005000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4015000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4025000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4035000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4045000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4055000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4065000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4075000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4085000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4095000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4105000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4115000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4125000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4135000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4145000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4155000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4165000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4175000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4185000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4195000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4205000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4215000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4225000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4235000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4245000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4255000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4265000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4275000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4285000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4295000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4305000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4315000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4325000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4335000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4345000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4355000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4365000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4375000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4385000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4395000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4405000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4415000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4425000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4435000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4445000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4455000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4465000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4475000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4485000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4495000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4505000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4515000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4525000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4535000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4545000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4555000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4565000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4575000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4585000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4595000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4605000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4615000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4625000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4635000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4645000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4655000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4665000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4675000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4685000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4695000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4705000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4715000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4725000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4735000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4745000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4755000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4765000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4775000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4785000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4795000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4805000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4815000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4825000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4835000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4845000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4855000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4865000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4875000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4885000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4895000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4905000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4915000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4925000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4935000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4945000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4955000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=4965000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=4975000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=4985000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=4995000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5005000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5015000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5025000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5035000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5045000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5055000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5065000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5075000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5085000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5095000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5105000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5115000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5125000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5135000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5145000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5155000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5165000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5175000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5185000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5195000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5205000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5215000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5225000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5235000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5245000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5255000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5265000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5275000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5285000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5295000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5305000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5315000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5325000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5335000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5345000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5355000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5365000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5375000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5385000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5395000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5405000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5415000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5425000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5435000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5445000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5455000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5465000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5475000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5485000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5495000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5505000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5515000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5525000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5535000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5545000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5555000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5565000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5575000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5585000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5595000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5605000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5615000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5625000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5635000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5645000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5655000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5665000 start=0 latch=0 state=5 A_en=0 B_en=1 META_en=0
+[READDBG] t=5675000 start=0 latch=0 state=6 A_en=0 B_en=0 META_en=0
+[READDBG] t=5685000 start=0 latch=0 state=7 A_en=0 B_en=0 META_en=0
+[READDBG] t=5695000 start=0 latch=0 state=8 A_en=0 B_en=0 META_en=0
+[READDBG] t=5705000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=5715000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=5725000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=5735000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=5745000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=5755000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=5765000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=5775000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=5785000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=5795000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=5805000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=5815000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=5825000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=5835000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=5845000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=5855000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=5865000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=5875000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=5885000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=5895000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=5905000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=5915000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=5925000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=5935000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=5945000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=5955000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=5965000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=5975000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=5985000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=5995000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=6005000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=6015000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=6025000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=6035000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=6045000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=6055000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=6065000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=6075000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=6085000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=6095000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=6105000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=6115000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=6125000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=6135000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=6145000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=6155000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=6165000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=6175000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=6185000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=6195000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=6205000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=6215000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=6225000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=6235000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=6245000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=6255000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=6265000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=6275000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=6285000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=6295000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=6305000 start=0 latch=0 state=9 A_en=0 B_en=0 META_en=1
+[READDBG] t=6315000 start=0 latch=0 state=10 A_en=0 B_en=0 META_en=0
+[READDBG] t=6325000 start=0 latch=0 state=11 A_en=0 B_en=0 META_en=0
+[READDBG] t=6335000 start=0 latch=0 state=12 A_en=0 B_en=0 META_en=0
+[READDBG] t=6345000 start=0 latch=0 state=13 A_en=0 B_en=0 META_en=0
+[READDBG] t=6355000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[PASS] Sparse compute busy asserted
+[METRIC] Operand-read cycles = 451
+
+----------------------------------------------
+OPERAND VERIFICATION
+----------------------------------------------
+[PASS] All captured operands match
+[READDBG] t=6365000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6375000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6385000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6395000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6405000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6415000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6425000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6435000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6445000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6455000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6465000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6475000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6485000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6495000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6505000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6515000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6525000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6535000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6545000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6555000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6565000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6575000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6585000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6595000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6605000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6615000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6625000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6635000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6645000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6655000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6665000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6675000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6685000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6695000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6705000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6715000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6725000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6735000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6745000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6755000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6765000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6775000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6785000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6795000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6805000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6815000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6825000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6835000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6845000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6855000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6865000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6875000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6885000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6895000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6905000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6915000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6925000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6935000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6945000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6955000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6965000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6975000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6985000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=6995000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7005000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7015000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7025000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7035000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7045000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7055000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7065000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7075000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7085000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7095000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7105000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7115000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7125000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7135000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7145000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7155000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7165000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7175000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7185000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7195000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7205000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7215000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7225000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7235000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7245000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7255000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7265000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7275000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7285000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7295000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7305000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7315000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7325000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7335000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7345000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7355000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7365000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7375000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7385000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7395000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7405000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7415000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7425000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7435000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7445000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7455000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7465000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7475000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7485000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7495000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7505000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7515000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7525000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7535000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7545000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7555000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7565000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7575000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7585000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7595000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7605000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7615000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7625000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7635000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7645000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7655000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7665000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7675000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7685000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7695000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7705000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7715000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7725000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7735000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7745000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7755000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7765000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7775000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7785000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7795000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7805000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7815000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7825000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7835000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7845000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7855000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7865000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7875000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7885000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7895000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7905000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7915000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7925000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7935000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7945000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7955000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7965000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7975000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7985000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=7995000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8005000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8015000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8025000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8035000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8045000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8055000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8065000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8075000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8085000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8095000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8105000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8115000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8125000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8135000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8145000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8155000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8165000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8175000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8185000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8195000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8205000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8215000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8225000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8235000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8245000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8255000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8265000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8275000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8285000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8295000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8305000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8315000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8325000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8335000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8345000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8355000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8365000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8375000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8385000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8395000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8405000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8415000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8425000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8435000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8445000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8455000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8465000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8475000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8485000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8495000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8505000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8515000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8525000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8535000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8545000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8555000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8565000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8575000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8585000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8595000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8605000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8615000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8625000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8635000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8645000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8655000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8665000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8675000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8685000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8695000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8705000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8715000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8725000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8735000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8745000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8755000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8765000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8775000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8785000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8795000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8805000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8815000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8825000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8835000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8845000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8855000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8865000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8875000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8885000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8895000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8905000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8915000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8925000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8935000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8945000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8955000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8965000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8975000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8985000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=8995000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9005000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9015000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9025000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9035000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9045000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9055000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9065000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9075000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9085000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9095000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9105000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9115000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9125000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9135000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9145000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9155000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9165000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9175000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9185000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9195000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9205000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9215000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9225000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9235000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9245000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9255000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9265000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9275000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9285000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9295000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9305000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9315000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9325000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9335000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9345000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9355000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9365000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9375000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9385000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9395000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9405000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9415000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9425000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9435000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9445000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9455000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9465000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9475000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9485000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9495000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9505000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9515000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9525000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9535000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9545000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9555000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9565000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9575000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9585000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9595000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9605000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9615000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9625000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9635000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9645000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9655000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9665000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9675000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9685000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9695000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9705000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9715000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9725000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9735000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9745000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9755000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9765000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9775000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9785000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9795000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9805000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9815000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9825000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9835000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9845000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9855000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9865000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9875000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9885000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9895000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9905000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9915000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9925000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9935000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9945000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9955000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9965000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9975000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9985000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=9995000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10005000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10015000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10025000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10035000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10045000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10055000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10065000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10075000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10085000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10095000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10105000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10115000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10125000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10135000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10145000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10155000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10165000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10175000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10185000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10195000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10205000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10215000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10225000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10235000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10245000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10255000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10265000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10275000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10285000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10295000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10305000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10315000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10325000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10335000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10345000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10355000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10365000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10375000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10385000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10395000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10405000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10415000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10425000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10435000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10445000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10455000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10465000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10475000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10485000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10495000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10505000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10515000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10525000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10535000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10545000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10555000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10565000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10575000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10585000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10595000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10605000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10615000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10625000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10635000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10645000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10655000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10665000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10675000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10685000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10695000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10705000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10715000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10725000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10735000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10745000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10755000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10765000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10775000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10785000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10795000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10805000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10815000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10825000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10835000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10845000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10855000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10865000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10875000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10885000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10895000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10905000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10915000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10925000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10935000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10945000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10955000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10965000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10975000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10985000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=10995000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11005000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11015000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11025000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11035000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11045000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11055000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11065000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11075000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11085000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11095000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11105000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11115000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11125000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11135000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11145000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11155000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11165000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11175000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11185000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11195000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11205000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11215000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11225000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11235000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11245000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11255000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11265000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11275000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11285000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11295000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11305000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11315000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11325000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11335000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11345000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11355000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11365000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11375000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11385000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11395000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11405000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11415000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11425000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11435000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11445000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11455000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11465000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11475000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11485000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11495000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11505000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11515000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11525000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11535000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11545000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11555000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11565000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11575000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11585000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11595000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11605000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11615000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11625000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11635000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11645000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11655000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11665000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11675000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11685000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11695000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11705000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11715000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11725000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11735000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11745000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11755000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11765000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11775000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11785000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11795000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11805000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11815000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11825000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11835000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11845000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11855000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11865000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11875000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11885000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11895000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11905000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11915000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11925000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11935000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11945000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11955000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11965000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11975000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11985000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=11995000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12005000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12015000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12025000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12035000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12045000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12055000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12065000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12075000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12085000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12095000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12105000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12115000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12125000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12135000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12145000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12155000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12165000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12175000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12185000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12195000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[PASS] Sparse compute completed
+[METRIC] Sparse compute cycles = 585
+[READDBG] t=12205000 start=0 latch=0 state=14 A_en=0 B_en=0 META_en=0
+[READDBG] t=12215000 start=0 latch=0 state=0 A_en=0 B_en=0 META_en=0
+
+----------------------------------------------
+COMPUTE STATUS
+----------------------------------------------
+[PASS] compute_done pulse observed at cycle 1216
+[PASS] compute_busy deasserted
+[PASS] Executed MAC count = 256
+
+----------------------------------------------
+SPARSE 8x8 RESULT
+----------------------------------------------
+C[0] = [3460, 3560, 3660, 3760, 3860, 3960, 4060, 4160]
+C[1] = [8900, 9160, 9420, 9680, 9940, 10200, 10460, 10720]
+C[2] = [1294, 1420, 1546, 1672, 1798, 1924, 2050, 2176]
+C[3] = [1742, 1804, 1866, 1928, 1990, 2052, 2114, 2176]
+C[4] = [2358, 2436, 2514, 2592, 2670, 2748, 2826, 2904]
+C[5] = [2406, 2500, 2594, 2688, 2782, 2876, 2970, 3064]
+C[6] = [2838, 2948, 3058, 3168, 3278, 3388, 3498, 3608]
+C[7] = [3850, 3980, 4110, 4240, 4370, 4500, 4630, 4760]
+
+----------------------------------------------
+RESULT VERIFICATION
+----------------------------------------------
+[PASS] All 64 output elements match
+
+====================================================
+          SPARSE 8x8 RESEARCH METRICS
+====================================================
+
+---- Workload ----
+Matrix                         : 8 x 8
+Structured sparsity            : 2:4
+Sparsity                       : 50%
+Dense MAC opportunities        : 512
+Sparse executed MACs           : 256
+MAC reduction                  : 50.00%
+
+---- External Memory ----
+Memory requests                : 4
+Memory response beats          : 56
+External bytes transferred     : 448 B
+External traffic reduction     : 12.50%
+
+---- Timing ----
+Transfer cycles                : 178
+Operand-read cycles            : 451
+Sparse compute cycles          : 585
+End-to-end cycles              : 1214
+
+---- Compute Efficiency ----
+MACs / compute cycle           : 0.437607
+Cycles / MAC                   : 2.285156
+Cycles / output result         : 18.968750
+
+---- Verification ----
+Verification errors            : 0
+
+====================================================
+FINAL STATUS
+====================================================
+SPARSE 8x8 FUNCTIONAL + METRICS TEST: PASS
+====================================================
+verification/tb/sparse_datapath_8x8_wrapper_tb.sv:1617: $finish called at 12215000 (1ps)

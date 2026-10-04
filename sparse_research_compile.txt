@@ -1,0 +1,2 @@
+verification/tb/sparse_datapath_8x8_research_tb_rebuilt.sv: No such file or directory
+Preprocessor failed with 1 errors.
