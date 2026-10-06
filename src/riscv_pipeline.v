@@ -432,7 +432,7 @@ module riscv_pipeline (
         // second funct3 for the high half) -- out of scope for now, flagged
         // rather than silently truncated without comment.
         (forwarded_rs1[6] ? {30'b0, accel_busy_reg, accelerator_any_error}
-                          : accel_read_data[31:0]) :
+                          : (forwarded_rs1[7] ? accel_read_data[63:32] : accel_read_data[31:0])) :
 
         normal_alu_result;
     assign dbg_alu = alu_result_ex;

@@ -64,6 +64,7 @@ module hazard_directed_tb;
         end
     endtask
 
+    integer hi_idx = 43;
     integer run_pulses = 0, done_pulses = 0, cyc = 0, errs = 0, test = 0;
     always @(posedge clk) if (!rst) begin
         cyc <= cyc + 1;
@@ -80,6 +81,7 @@ module hazard_directed_tb;
 
     initial begin
         if (!$value$plusargs("TEST=%d", test)) test = 1;
+        if (!$value$plusargs("IDX=%d", hi_idx)) hi_idx = 43;
         $display("==== hazard_directed_tb  TEST=%0d ====", test);
         repeat (4) @(posedge clk);
         rst = 1'b0;
@@ -107,10 +109,10 @@ module hazard_directed_tb;
         end
         2: begin
             check("T2a ALU->BEQ not-taken case: x7 executed", dut.rf.regs[7], 1);
-            check("T2b ALU->BEQ taken case: x8 skipped",      dut.rf.regs[8], 0);
+            check("T2b ALU->BEQ taken case: x8 skipped (sentinel 5 kept)", dut.rf.regs[8], 5);
         end
         3: begin
-            check("T3 FMAC_READ->BEQ taken: x5 skipped", dut.rf.regs[5], 0);
+            check("T3 FMAC_READ->BEQ taken: x5 skipped (sentinel 5 kept)", dut.rf.regs[5], 5);
             check("T3 x4 = sparse C[0]",                 dut.rf.regs[4], exp_sp[0]);
         end
         4: begin
@@ -118,6 +120,16 @@ module hazard_directed_tb;
             check("T4 status after good job (error cleared)",        dut.rf.regs[5], 0);
             check("T4 good job result still correct x10",            dut.rf.regs[10], exp_sp[0]);
             check("T4 two all_done pulses (bad job still completes)", done_pulses, 2);
+        end
+        5: begin
+            if ({dut.rf.regs[5], dut.rf.regs[4]} === exp_sp[hi_idx])
+                $display("  PASS  T5 sparse {high,low} == golden C[%0d] (%0d)", hi_idx, $signed(exp_sp[hi_idx]));
+            else begin errs = errs + 1;
+                $display("  FAIL  T5 sparse C[%0d] got %0d expected %0d", hi_idx, $signed({dut.rf.regs[5], dut.rf.regs[4]}), $signed(exp_sp[hi_idx])); end
+            if ({dut.rf.regs[7], dut.rf.regs[6]} === exp_de[hi_idx])
+                $display("  PASS  T5 dense  {high,low} == golden C[%0d] (%0d)", hi_idx, $signed(exp_de[hi_idx]));
+            else begin errs = errs + 1;
+                $display("  FAIL  T5 dense  C[%0d] got %0d expected %0d", hi_idx, $signed({dut.rf.regs[7], dut.rf.regs[6]}), $signed(exp_de[hi_idx])); end
         end
         endcase
         $display("==== TEST %0d : %0s (%0d errors) ====", test, errs == 0 ? "PASS" : "FAIL", errs);

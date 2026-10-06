@@ -28,26 +28,33 @@ progs[1] = PRE + [addi(1,0,0), setdesc(1), start(), start(), addi(2,0,0), fmac_r
 # T2: ALU result consumed by the BEQ directly behind it.
 #   case A: x1 changes 7->9, BEQ(x1,x2=7) must NOT be taken (stale x1=7 would take it)
 #   case B: x1 changes 9->7, BEQ(x1,x2=7) must be taken    (stale x1=9 would not)
-progs[2] = PRE + [addi(2,0,7), addi(1,0,7)] + nops(4) + [
+progs[2] = PRE + [addi(2,0,7), addi(1,0,7), addi(8,0,5)] + nops(4) + [
     addi(1,0,9), beq(1,2,8), addi(7,0,1), NOP,          # expect x7 == 1 (not taken)
-    addi(1,0,7), beq(1,2,8), addi(8,0,1), NOP,          # expect x8 == 0 (taken)
+    addi(1,0,7), beq(1,2,8), addi(8,0,1), NOP,          # expect x8 == 5 (sentinel kept: skipped)
 ] + END
 
 # T3: FMAC_READ result consumed by the BEQ directly behind it (C[0] = -14 for the sparse job).
-progs[3] = PRE + [addi(1,0,0), addi(2,0,0), addi(6,0,-14), setdesc(1), start(),
-                  fmac_read(4,2), beq(4,6,8), addi(5,0,1), NOP] + END   # expect x5 == 0 (taken)
+progs[3] = PRE + [addi(5,0,5), addi(1,0,0), addi(2,0,0), addi(6,0,-14), setdesc(1), start(),
+                  fmac_read(4,2), beq(4,6,8), addi(5,0,1), NOP] + END   # expect x5 == 5 (sentinel kept: skipped)
 
 # T4: invalid descriptor (rows = 0, descriptor 2) must not hang, must report error,
 #     and the accelerator must recover for a good job afterwards.
 #     FMAC_READ with rs1[6]=1 returns the status word {busy, error}.
-progs[4] = PRE + [addi(3,0,64), addi(1,0,2), setdesc(1), start(),
+progs[4] = PRE + [addi(4,0,0x55), addi(5,0,0x55), addi(10,0,0x55),
+                  addi(3,0,64), addi(1,0,2), setdesc(1), start(),
                   fmac_read(4,3),                         # x4 expect 1 (error, not busy)
                   addi(1,0,0), setdesc(1), start(),       # good sparse job
                   fmac_read(5,3),                         # x5 expect 0 (error cleared by new run)
                   addi(2,0,0), fmac_read(10,2)] + END     # x10 expect exp_sp[0]
 
+# T5: 64-bit result read as two 32-bit halves: FMAC_READ idx (low) and idx+128 (high), sparse then dense job.
+#     Element index comes from env HI_IDX (default 43). x4/x5 = sparse low/high, x6/x7 = dense low/high.
+HI = int(os.environ.get("HI_IDX", "43"))
+progs[5] = PRE + [addi(1,0,0), setdesc(1), start(), addi(2,0,HI), addi(3,0,HI+128), fmac_read(4,2), fmac_read(5,3),
+                  addi(1,0,1), setdesc(1), start(), fmac_read(6,2), fmac_read(7,3)] + END
+
 os.makedirs(OUT, exist_ok=True)
-for n, p in progs.items():
+for n, p in sorted(progs.items()):
     assert len(p) <= 352, (n, len(p))
     p = p + [NOP] * (352 - len(p))
     with open(os.path.join(OUT, f"t{n}.mem"), "w") as f:
