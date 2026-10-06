@@ -123,479 +123,138 @@ module sparse_compute_8x8_controller #(
     // State Machine
     //==========================================================================
 
-    typedef enum logic [3:0] {
-
+    // OPTIMIZED: 1 clear slot + 4 back-to-back MACs per output element (5 cycles/output).
+    // The previous output's accumulator is stored in the same cycle the next clear is applied
+    // (accumulator is final in the cycle after the last MAC; clear takes effect at the edge).
+    typedef enum logic [2:0] {
         IDLE,
-
-        CLEAR_ACC,
-
-        MAC_FIRST,
-        MAC_SECOND,
-
-        NEXT_GROUP,
-
-        STORE_RESULT,
-
-        NEXT_COLUMN,
-        NEXT_ROW,
-
+        CLR,
+        MAC,
+        FINAL,
         COMPLETE
-
     } state_t;
 
     state_t state;
 
-    //==========================================================================
-    // Iteration Counters
-    //==========================================================================
-
     logic [2:0] current_row;
     logic [2:0] current_col;
-
-    // 0 -> K 0..3
-    // 1 -> K 4..7
-    logic       current_group;
-
-    //==========================================================================
-    // Metadata Decoder
-    //==========================================================================
+    logic [2:0] prev_row;
+    logic [2:0] prev_col;
+    logic [1:0] m;            // 0..3: which of the 4 kept products of this output
+    logic       have_prev;
 
     logic [3:0] metadata_enable_mask;
     logic [1:0] metadata_index0;
     logic [1:0] metadata_index1;
 
+    // m[1] selects the 4-wide group (0 or 1); m[0] selects first/second kept element of the group
     metadata_decoder u_metadata_decoder (
-
-        .metadata(
-            metadata[current_row][current_group]
-        ),
-
-        .enable_mask(
-            metadata_enable_mask
-        ),
-
-        .index0(
-            metadata_index0
-        ),
-
-        .index1(
-            metadata_index1
-        )
-
+        .metadata    (metadata[current_row][m[1]]),
+        .enable_mask (metadata_enable_mask),
+        .index0      (metadata_index0),
+        .index1      (metadata_index1)
     );
 
-    //==========================================================================
-    // Logical K Indices
-    //==========================================================================
-
-    logic [2:0] logical_k0;
-    logic [2:0] logical_k1;
-
-    always_comb begin
-
-        if (current_group == 1'b0) begin
-
-            logical_k0 =
-                {1'b0, metadata_index0};
-
-            logical_k1 =
-                {1'b0, metadata_index1};
-
-        end
-
-        else begin
-
-            logical_k0 =
-                3'd4 + {1'b0, metadata_index0};
-
-            logical_k1 =
-                3'd4 + {1'b0, metadata_index1};
-
-        end
-
-    end
-
-    //==========================================================================
-    // Compressed A Indices
-    //==========================================================================
-
-    logic [1:0] compressed_a_index0;
-    logic [1:0] compressed_a_index1;
-
-    always_comb begin
-
-        if (current_group == 1'b0) begin
-
-            compressed_a_index0 = 2'd0;
-            compressed_a_index1 = 2'd1;
-
-        end
-
-        else begin
-
-            compressed_a_index0 = 2'd2;
-            compressed_a_index1 = 2'd3;
-
-        end
-
-    end
-
-    //==========================================================================
-    // MAC Operands
-    //==========================================================================
+    logic [2:0] logical_k;
+    always_comb logical_k = {m[1], (m[0] ? metadata_index1 : metadata_index0)};
 
     logic signed [DATA_WIDTH-1:0] mac_operand_a;
     logic signed [DATA_WIDTH-1:0] mac_operand_b;
-
     always_comb begin
-
         mac_operand_a = '0;
         mac_operand_b = '0;
-
-        case (state)
-
-            //------------------------------------------------------------------
-            // First non-zero value in current 2:4 group
-            //------------------------------------------------------------------
-
-            MAC_FIRST: begin
-
-                mac_operand_a =
-                    sparse_a[current_row][compressed_a_index0];
-
-                mac_operand_b =
-                    b[logical_k0][current_col];
-
-            end
-
-            //------------------------------------------------------------------
-            // Second non-zero value in current 2:4 group
-            //------------------------------------------------------------------
-
-            MAC_SECOND: begin
-
-                mac_operand_a =
-                    sparse_a[current_row][compressed_a_index1];
-
-                mac_operand_b =
-                    b[logical_k1][current_col];
-
-            end
-
-            default: begin
-
-                mac_operand_a = '0;
-                mac_operand_b = '0;
-
-            end
-
-        endcase
-
+        if (state == MAC) begin
+            mac_operand_a = sparse_a[current_row][m];
+            mac_operand_b = b[logical_k][current_col];
+        end
     end
-
-    //==========================================================================
-    // MAC Unit
-    //==========================================================================
 
     logic mac_enable;
     logic clear_acc;
-
     logic signed [ACC_WIDTH-1:0] mac_accumulator;
 
     mac_unit #(
-
         .OPERAND_WIDTH(DATA_WIDTH),
         .ACC_WIDTH(ACC_WIDTH)
-
     ) u_mac (
-
         .clk(clk),
         .rst(rst),
-
         .enable(mac_enable),
         .clear_acc(clear_acc),
-
         .operand_a(mac_operand_a),
         .operand_b(mac_operand_b),
-
         .accumulator(mac_accumulator)
-
     );
 
-    //==========================================================================
-    // MAC Control
-    //==========================================================================
-
     always_comb begin
-
-        mac_enable = 1'b0;
-        clear_acc  = 1'b0;
-
-        case (state)
-
-            //------------------------------------------------------------------
-            // Clear accumulator before EVERY C[row][col].
-            //------------------------------------------------------------------
-
-            CLEAR_ACC: begin
-
-                clear_acc = 1'b1;
-
-            end
-
-            //------------------------------------------------------------------
-            // One MAC per cycle.
-            //------------------------------------------------------------------
-
-            MAC_FIRST,
-            MAC_SECOND: begin
-
-                mac_enable = 1'b1;
-
-            end
-
-            default: begin
-
-                mac_enable = 1'b0;
-                clear_acc  = 1'b0;
-
-            end
-
-        endcase
-
+        mac_enable = (state == MAC);
+        clear_acc  = (state == CLR);
     end
-
-    //==========================================================================
-    // Controller
-    //==========================================================================
 
     integer row_index;
     integer col_index;
 
     always_ff @(posedge clk) begin
-
         if (rst) begin
-
             state <= IDLE;
-
-            current_row   <= 3'd0;
-            current_col   <= 3'd0;
-            current_group <= 1'b0;
-
-            busy <= 1'b0;
-            done <= 1'b0;
-
+            current_row <= 3'd0; current_col <= 3'd0;
+            prev_row <= 3'd0;    prev_col <= 3'd0;
+            m <= 2'd0; have_prev <= 1'b0;
+            busy <= 1'b0; done <= 1'b0;
             mac_count <= 16'd0;
-
-            for (row_index = 0;
-                 row_index < 8;
-                 row_index = row_index + 1) begin
-
-                for (col_index = 0;
-                     col_index < 8;
-                     col_index = col_index + 1) begin
-
+            for (row_index = 0; row_index < 8; row_index = row_index + 1)
+                for (col_index = 0; col_index < 8; col_index = col_index + 1)
                     result[row_index][col_index] <= '0;
-
-                end
-
-            end
-
         end
-
         else begin
-
-            // done is a one-cycle pulse.
             done <= 1'b0;
-
             case (state)
-
-                //================================================================
-                // IDLE
-                //================================================================
-
                 IDLE: begin
-
                     busy <= 1'b0;
-
                     if (start) begin
-
                         busy <= 1'b1;
-
-                        current_row   <= 3'd0;
-                        current_col   <= 3'd0;
-                        current_group <= 1'b0;
-
+                        current_row <= 3'd0; current_col <= 3'd0;
+                        m <= 2'd0; have_prev <= 1'b0;
                         mac_count <= 16'd0;
-
-                        state <= CLEAR_ACC;
-
+                        state <= CLR;
                     end
-
                 end
-
-                //================================================================
-                // CLEAR ACCUMULATOR
-                //
-                // This occurs once before EVERY output C[row][col].
-                //================================================================
-
-                CLEAR_ACC: begin
-
-                    state <= MAC_FIRST;
-
+                CLR: begin
+                    if (have_prev)
+                        result[prev_row][prev_col] <= mac_accumulator;
+                    m <= 2'd0;
+                    state <= MAC;
                 end
-
-                //================================================================
-                // First MAC of current 2:4 group
-                //================================================================
-
-                MAC_FIRST: begin
-
+                MAC: begin
                     mac_count <= mac_count + 16'd1;
-
-                    state <= MAC_SECOND;
-
-                end
-
-                //================================================================
-                // Second MAC of current 2:4 group
-                //================================================================
-
-                MAC_SECOND: begin
-
-                    mac_count <= mac_count + 16'd1;
-
-                    state <= NEXT_GROUP;
-
-                end
-
-                //================================================================
-                // Advance sparse K group
-                //================================================================
-
-                NEXT_GROUP: begin
-
-                    if (current_group == 1'b0) begin
-
-                        // Group 0 complete.
-                        // Start group 1.
-
-                        current_group <= 1'b1;
-
-                        state <= MAC_FIRST;
-
+                    if (m == 2'd3) begin
+                        prev_row <= current_row; prev_col <= current_col; have_prev <= 1'b1;
+                        m <= 2'd0;
+                        if ((current_row == 3'd7) && (current_col == 3'd7)) begin
+                            state <= FINAL;
+                        end
+                        else begin
+                            if (current_col < 3'd7) current_col <= current_col + 3'd1;
+                            else begin current_col <= 3'd0; current_row <= current_row + 3'd1; end
+                            state <= CLR;
+                        end
                     end
-
-                    else begin
-
-                        // Both groups complete.
-                        // The accumulator now contains the complete
-                        // C[row][col] value.
-
-                        state <= STORE_RESULT;
-
-                    end
-
+                    else m <= m + 2'd1;
                 end
-
-                //================================================================
-                // Store current output element
-                //================================================================
-
-                STORE_RESULT: begin
-
-                    result[current_row][current_col]
-                        <= mac_accumulator;
-
-                    current_group <= 1'b0;
-
-                    state <= NEXT_COLUMN;
-
+                FINAL: begin
+                    result[prev_row][prev_col] <= mac_accumulator;
+                    state <= COMPLETE;
                 end
-
-                //================================================================
-                // Advance output column
-                //================================================================
-
-                NEXT_COLUMN: begin
-
-                    if (current_col < 3'd7) begin
-
-                        current_col <= current_col + 3'd1;
-
-                        state <= CLEAR_ACC;
-
-                    end
-
-                    else begin
-
-                        current_col <= 3'd0;
-
-                        state <= NEXT_ROW;
-
-                    end
-
-                end
-
-                //================================================================
-                // Advance output row
-                //================================================================
-
-                NEXT_ROW: begin
-
-                    if (current_row < 3'd7) begin
-
-                        current_row <= current_row + 3'd1;
-
-                        state <= CLEAR_ACC;
-
-                    end
-
-                    else begin
-
-                        state <= COMPLETE;
-
-                    end
-
-                end
-
-                //================================================================
-                // COMPLETE
-                //================================================================
-
                 COMPLETE: begin
-
                     busy <= 1'b0;
                     done <= 1'b1;
-
                     state <= IDLE;
-
                 end
-
-                //================================================================
-                // Safety
-                //================================================================
-
                 default: begin
-
-                    state <= IDLE;
-
-                    busy <= 1'b0;
-                    done <= 1'b0;
-
-                    current_row   <= 3'd0;
-                    current_col   <= 3'd0;
-                    current_group <= 1'b0;
-
+                    state <= IDLE; busy <= 1'b0; done <= 1'b0;
                 end
-
             endcase
-
         end
-
     end
-
 endmodule
-
 `default_nettype wire

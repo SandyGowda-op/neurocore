@@ -270,7 +270,7 @@ logic [31:0] compute_output_count;
 //
 //==========================================================================
 
-compute_controller #(
+compute_controller_pipelined #(
     .DATA_WIDTH (DATA_WIDTH),
     .ACC_WIDTH  (64),
     .ADDR_WIDTH (SPAD_ADDR_WIDTH)

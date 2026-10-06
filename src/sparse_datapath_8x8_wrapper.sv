@@ -541,349 +541,90 @@ module sparse_datapath_8x8_wrapper #(
     // WAIT3 is therefore intentional.
     //==========================================================================
 
-    typedef enum logic [3:0] {
-
+    // OPTIMIZED LOADER: A, B and metadata live in three different scratchpad banks, so all three
+    // streams are read in parallel, one element per cycle per bank (bank compute-read latency = 2:
+    // request in cycle t -> data in cycle t+2). B (64 elements) is the longest stream.
+    typedef enum logic [2:0] {
         READ_IDLE,
-
-        READ_A_REQUEST,
-        READ_A_WAIT1,
-        READ_A_WAIT2,
-        READ_A_WAIT3,
-
-        READ_B_REQUEST,
-        READ_B_WAIT1,
-        READ_B_WAIT2,
-        READ_B_WAIT3,
-
-        READ_META_REQUEST,
-        READ_META_WAIT1,
-        READ_META_WAIT2,
-        READ_META_WAIT3,
-
+        READ_ISSUE,
+        READ_DRAIN,
         READ_COMPLETE,
         COMPUTE_WAIT
-
     } read_state_t;
 
     read_state_t read_state;
-
-    logic [5:0] read_index;
-
-    always @(posedge clk) begin
-    if (!rst && VERBOSE) begin
-        $display(
-            "[READDBG] t=%0t start=%b latch=%b state=%0d A_en=%b B_en=%b META_en=%b",
-            $time,
-            compute_start,
-            transfer_complete_latched,
-            read_state,
-            sparse_a_en,
-            sparse_b_en,
-            sparse_metadata_en
-        );
-    end
-end
-
-    //==========================================================================
-    // Sparse Read Address Generation
-    //==========================================================================
+    logic [5:0]  read_index;
+    logic        drain_cnt;
 
     always_comb begin
-
-        sparse_a_en          = 1'b0;
-        sparse_a_addr        = '0;
-
-        sparse_b_en          = 1'b0;
-        sparse_b_addr        = '0;
-
-        sparse_metadata_en   = 1'b0;
-        sparse_metadata_addr = '0;
-
-        case (read_state)
-
-            //------------------------------------------------------------------
-            // Compressed A
-            //------------------------------------------------------------------
-
-            READ_A_REQUEST: begin
-
-                sparse_a_en   = 1'b1;
-                sparse_a_addr = read_index;
-
-            end
-
-            //------------------------------------------------------------------
-            // Dense B
-            //------------------------------------------------------------------
-
-            READ_B_REQUEST: begin
-
-                sparse_b_en   = 1'b1;
-                sparse_b_addr = read_index;
-
-            end
-
-            //------------------------------------------------------------------
-            // Metadata
-            //------------------------------------------------------------------
-
-            READ_META_REQUEST: begin
-
-                sparse_metadata_en   = 1'b1;
-                sparse_metadata_addr = read_index;
-
-            end
-
-            default: begin
-
-            end
-
-        endcase
-
+        sparse_a_en          = (read_state == READ_ISSUE) && (read_index < 6'd32);
+        sparse_a_addr        = read_index;
+        sparse_b_en          = (read_state == READ_ISSUE);
+        sparse_b_addr        = read_index;
+        sparse_metadata_en   = (read_state == READ_ISSUE) && (read_index < 6'd16);
+        sparse_metadata_addr = read_index;
     end
 
-    //==========================================================================
-    // Sparse Operand Read Controller
-    //==========================================================================
+    // remember what was requested for the 2 cycles until the data returns
+    logic       va1, vb1, vm1, va2, vb2, vm2;
+    logic [5:0] ix1, ix2;
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            va1 <= 0; vb1 <= 0; vm1 <= 0; va2 <= 0; vb2 <= 0; vm2 <= 0; ix1 <= 0; ix2 <= 0;
+        end else begin
+            va1 <= sparse_a_en;  vb1 <= sparse_b_en;  vm1 <= sparse_metadata_en;  ix1 <= read_index;
+            va2 <= va1;          vb2 <= vb1;          vm2 <= vm1;                 ix2 <= ix1;
+        end
+    end
 
     integer r;
     integer c;
-
     always_ff @(posedge clk) begin
-
         if (rst) begin
-
             read_state <= READ_IDLE;
             read_index <= 6'd0;
-
+            drain_cnt  <= 1'b0;
             for (r = 0; r < 8; r = r + 1) begin
-
-                for (c = 0; c < 4; c = c + 1)
-                    sparse_a[r][c] <= '0;
-
-                for (c = 0; c < 8; c = c + 1)
-                    dense_b[r][c] <= '0;
-
-                for (c = 0; c < 2; c = c + 1)
-                    sparse_metadata[r][c] <= '0;
-
+                for (c = 0; c < 4; c = c + 1) sparse_a[r][c] <= '0;
+                for (c = 0; c < 8; c = c + 1) dense_b[r][c] <= '0;
+                for (c = 0; c < 2; c = c + 1) sparse_metadata[r][c] <= '0;
             end
-
         end
-
         else begin
+            // data capture, two cycles after each request
+            if (va2) sparse_a[ix2[4:2]][ix2[1:0]]          <= sparse_a_rdata;
+            if (vb2) dense_b[ix2[5:3]][ix2[2:0]]           <= sparse_b_rdata;
+            if (vm2) sparse_metadata[ix2[3:1]][ix2[0]]     <= sparse_metadata_rdata[2:0];
 
             case (read_state)
-
-                //==============================================================
-                // Wait for compute request.
-                //==============================================================
-
                 READ_IDLE: begin
-
-                    if (compute_start &&
-                        transfer_complete_latched) begin
-
+                    if (compute_start && transfer_complete_latched) begin
                         read_index <= 6'd0;
-
-                        read_state <= READ_A_REQUEST;
-
+                        read_state <= READ_ISSUE;
                     end
-
                 end
-
-                //==============================================================
-                // A
-                //==============================================================
-
-                READ_A_REQUEST: begin
-
-                    read_state <= READ_A_WAIT1;
-
-                end
-
-
-                READ_A_WAIT1: begin
-
-                    read_state <= READ_A_WAIT2;
-
-                end
-
-
-                READ_A_WAIT2: begin
-
-                    read_state <= READ_A_WAIT3;
-
-                end
-
-
-                READ_A_WAIT3: begin
-
-                    sparse_a[
-                        read_index / 4
-                    ][
-                        read_index % 4
-                    ] <= sparse_a_rdata;
-
-                    if (read_index == 6'd31) begin
-
-                        read_index <= 6'd0;
-
-                        read_state <= READ_B_REQUEST;
-
-                    end
-
-                    else begin
-
-                        read_index <= read_index + 6'd1;
-
-                        read_state <= READ_A_REQUEST;
-
-                    end
-
-                end
-
-                //==============================================================
-                // B
-                //==============================================================
-
-                READ_B_REQUEST: begin
-
-                    read_state <= READ_B_WAIT1;
-
-                end
-
-
-                READ_B_WAIT1: begin
-
-                    read_state <= READ_B_WAIT2;
-
-                end
-
-
-                READ_B_WAIT2: begin
-
-                    read_state <= READ_B_WAIT3;
-
-                end
-
-
-                READ_B_WAIT3: begin
-
-                    dense_b[
-                        read_index / 8
-                    ][
-                        read_index % 8
-                    ] <= sparse_b_rdata;
-
+                READ_ISSUE: begin
                     if (read_index == 6'd63) begin
-
-                        read_index <= 6'd0;
-
-                        read_state <= READ_META_REQUEST;
-
+                        drain_cnt  <= 1'b0;
+                        read_state <= READ_DRAIN;
                     end
-
-                    else begin
-
-                        read_index <= read_index + 6'd1;
-
-                        read_state <= READ_B_REQUEST;
-
-                    end
-
+                    else read_index <= read_index + 6'd1;
                 end
-
-                //==============================================================
-                // Metadata
-                //==============================================================
-
-                READ_META_REQUEST: begin
-
-                    read_state <= READ_META_WAIT1;
-
+                READ_DRAIN: begin           // last request's data arrives 2 cycles after the last issue
+                    if (drain_cnt) read_state <= READ_COMPLETE;
+                    else           drain_cnt  <= 1'b1;
                 end
-
-
-                READ_META_WAIT1: begin
-
-                    read_state <= READ_META_WAIT2;
-
-                end
-
-
-                READ_META_WAIT2: begin
-
-                    read_state <= READ_META_WAIT3;
-
-                end
-
-
-                READ_META_WAIT3: begin
-
-                    sparse_metadata[
-                        read_index / 2
-                    ][
-                        read_index % 2
-                    ] <= sparse_metadata_rdata[2:0];
-
-                    if (read_index == 6'd15) begin
-
-                        read_state <= READ_COMPLETE;
-
-                    end
-
-                    else begin
-
-                        read_index <= read_index + 6'd1;
-
-                        read_state <= READ_META_REQUEST;
-
-                    end
-
-                end
-
-                //==============================================================
-                // All operands captured.
-                //==============================================================
-
-                READ_COMPLETE: begin
-
-                    read_state <= COMPUTE_WAIT;
-
-                end
-
-                //==============================================================
-                // Compute active.
-                //==============================================================
-
+                READ_COMPLETE: read_state <= COMPUTE_WAIT;
                 COMPUTE_WAIT: begin
-
-                    if (compute_done)
-                        read_state <= READ_IDLE;
-
+                    if (compute_done) read_state <= READ_IDLE;
                 end
-
-                //==============================================================
-                // Safety.
-                //==============================================================
-
                 default: begin
-
                     read_state <= READ_IDLE;
                     read_index <= 6'd0;
-
                 end
-
             endcase
-
         end
-
     end
-
-    //==========================================================================
-    // Sparse Compute Start
-    //==========================================================================
 
     logic sparse_compute_start;
 
