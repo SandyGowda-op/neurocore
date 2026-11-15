@@ -8,3 +8,8 @@ results/
 # Verification logs
 *.log
 .history_sta
+__pycache__/
+*:Zone.Identifier
+*.pre_*
+build/
+results/
