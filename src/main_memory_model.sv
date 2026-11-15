@@ -76,24 +76,11 @@ localparam integer BYTES_PER_BEAT = DATA_WIDTH / 8;
 //
 //==============================================================================
 
-parameter logic [31:0] MATRIX_A_BASE =
-    32'h1000_0000;
-
-parameter logic [31:0] MATRIX_B_BASE =
-    32'h1000_0100;
-
-parameter logic [31:0] MATRIX_C_BASE =
-    32'h1000_0200;
-
-parameter logic [31:0] MATRIX_META_BASE =
-    32'h1000_0200;
-
-localparam integer MATRIX_REGION_SIZE = 256;
-localparam integer MATRIX_A_OFFSET = 0;
-localparam integer MATRIX_B_OFFSET = MATRIX_REGION_SIZE;
-localparam integer MATRIX_C_OFFSET = 2 * MATRIX_REGION_SIZE;
-localparam integer MATRIX_META_SIZE = 64;
-localparam integer MATRIX_META_OFFSET = 512;
+// Flat map: physical index = addr - MEM_BASE. Window layout is now owned by
+// the data generator / descriptors, not by this model. The old layout
+// (A +0x000, B +0x100, meta +0x200) is the identity mapping, so existing
+// .mem images remain valid unchanged.
+parameter logic [31:0] MEM_BASE = 32'h1000_0000;
 
 //==============================================================================
 // Behavioral Memory
@@ -105,7 +92,12 @@ logic [7:0] memory [0:MEMORY_SIZE-1];
 // Memory Initialization
 //==============================================================================
 
+integer init_i;
+
 initial begin
+
+    for (init_i = 0; init_i < MEMORY_SIZE; init_i = init_i + 1)
+        memory[init_i] = 8'h00;   // no X on short images
 
     $readmemh(MEMORY_INIT_FILE, memory);
 
@@ -430,49 +422,15 @@ always_comb begin
     begin
 
         //======================================================================
-        // Architectural address translation
+        // Flat address translation (descriptor address -> array index)
         //======================================================================
 
-        if ((current_address >= MATRIX_A_BASE) &&
-            (current_address <
-             (MATRIX_A_BASE + MATRIX_REGION_SIZE)))
-        begin
+        if (current_address >= MEM_BASE)
+            beat_address = (current_address - MEM_BASE) +
+                           (beat_counter * BYTES_PER_BEAT);
+        else
+            beat_address = MEMORY_SIZE;   // below base -> OOB
 
-            beat_address =
-                MATRIX_A_OFFSET +
-                (current_address - MATRIX_A_BASE) +
-                (beat_counter * BYTES_PER_BEAT);
-
-        end
-
-        else if ((current_address >= MATRIX_B_BASE) &&
-         (current_address <
-          (MATRIX_B_BASE + MATRIX_REGION_SIZE)))
-begin
-
-    beat_address =
-        MATRIX_B_OFFSET +
-        (current_address - MATRIX_B_BASE) +
-        (beat_counter * BYTES_PER_BEAT);
-
-end
-
-else if ((current_address >= MATRIX_META_BASE) &&
-         (current_address <
-          (MATRIX_META_BASE + MATRIX_META_SIZE)))
-begin
-
-    beat_address =
-        MATRIX_META_OFFSET +
-        (current_address - MATRIX_META_BASE) +
-        (beat_counter * BYTES_PER_BEAT);
-
-end
-
-else
-begin
-    beat_address = MEMORY_SIZE;
-end
         //======================================================================
         // Assemble one 64-bit beat
         //======================================================================
@@ -509,6 +467,17 @@ end
 //==============================================================================
 // Debug
 //==============================================================================
+
+integer oob_beats = 0;
+
+always_ff @(posedge clk) begin
+    if (!rst && state == STREAM_DATA && mem_rvalid &&
+        (beat_address + BYTES_PER_BEAT > MEMORY_SIZE)) begin
+        oob_beats <= oob_beats + 1;
+        $display("MEM_OOB [%0t] %m addr=%08h beat=%0d", $time,
+                 current_address, beat_counter);
+    end
+end
 
 always_ff @(posedge clk) begin
 
