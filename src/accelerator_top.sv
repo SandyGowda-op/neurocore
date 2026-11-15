@@ -105,7 +105,8 @@ module accelerator_top #(
     output logic signed [63:0] result_read_data_out,
 
     output logic [DESC_INDEX_WIDTH-1:0] debug_current_job_index,
-    output job_status_t                 debug_job_status
+    output job_status_t                 debug_job_status,
+    output logic                        desc_fetch_busy
 );
 
     //==========================================================================
@@ -345,6 +346,7 @@ module accelerator_top #(
 
     assign dfu_start = (top_state == TOP_FETCH);
     assign all_done  = (top_state == TOP_DONE);
+    assign desc_fetch_busy = (top_state == TOP_FETCH) || (top_state == TOP_WAIT_FETCH);
     assign any_error = any_error_reg;
 
     assign debug_current_job_index = job_index;

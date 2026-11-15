@@ -48,6 +48,7 @@ module riscv_pipeline (
     wire id_is_fmac_setdesc; //CUSTOM ISA EXTENSION CONTROL SIGNALS (funct3=011, writes descriptor_index_reg)
     reg  accel_done_reg;   // latched job-complete flag (driven in NEUROCORE INTEGRATION block)
     reg  accel_busy_reg;   // set when FMAC_START dispatches, cleared on all_done -- gates a 2nd START
+    wire accel_fetching;   // accelerator_top is fetching a descriptor (store-vs-fetch guard)
     wire accelerator_any_error; // sticky error flag from accelerator_top (declared early: read by FMAC_READ status)
     wire accelerator_all_done; // all_done pass-through (driven in NEUROCORE INTEGRATION block)
     wire idex_is_fmac;     // FMAC_START currently in EX (assigned in EX-stage decode)
@@ -230,7 +231,12 @@ module riscv_pipeline (
     assign accel_raw_hazard =
     (reading_mmul_result && !mmul_result_valid) ||
     (reading_fmac_result && (!accel_done_reg || idex_is_fmac)) ||
-    (id_is_fmac && (accel_busy_reg || idex_is_fmac));
+    (id_is_fmac && (accel_busy_reg || idex_is_fmac))
+`ifndef NO_DESC_STORE_GUARD
+    // a store behind START must not land while the DFU is still reading the descriptor
+    || (id_mem_write && (idex_is_fmac || accel_fetching))
+`endif
+    ;
 
     `ifndef SYNTHESIS
     always @(*) begin
@@ -478,7 +484,11 @@ end
         .rst(rst),
 
         .alu_in(alu_result_ex),
+`ifdef NO_STORE_FWD_FIX
         .rs2_data_in(idex_rs2),
+`else
+        .rs2_data_in(forwarded_rs2),
+`endif
         .rd_in(idex_rd),
         .mem_read_in(idex_mem_read),
         .mem_write_in(idex_mem_write),
@@ -508,10 +518,13 @@ end
     wire mmul_sel = (exmem_alu >= MMUL_BASE) &&
                     (exmem_alu <  MMUL_BASE + 32'h100);
 
+    // CPU-authored descriptors: SW to 0x2000..0x2FFF -> descriptor memory
+    wire desc_sel = exmem_mem_write && (exmem_alu[31:12] == 20'h00002);
+
     data_memory dmem (
         .clk(clk),
         .mem_read(exmem_mem_read & ~mmul_sel),
-        .mem_write(exmem_mem_write & ~mmul_sel),
+        .mem_write(exmem_mem_write & ~mmul_sel & ~desc_sel),
         .addr(exmem_alu),
         .write_data(exmem_rs2),
         .read_data(dmem_rdata)
@@ -636,10 +649,11 @@ end
         .all_done     (accelerator_all_done),
         .any_error    (accelerator_any_error),
 
-        .cpu_we          (desc_we),
-        .cpu_desc_idx    (desc_idx),
-        .cpu_word_offset (desc_word_off),
-        .cpu_wdata       (desc_wdata),
+        .cpu_we          (desc_we | desc_sel),
+        .cpu_desc_idx    (desc_sel ? exmem_alu[11:5] : desc_idx),
+        .cpu_word_offset (desc_sel ? exmem_alu[4:2]  : desc_word_off),
+        .cpu_wdata       (desc_sel ? exmem_rs2       : desc_wdata),
+        .desc_fetch_busy (accel_fetching),
 
         .debug_dense_result_valid (),
         .debug_dense_result_row   (),
