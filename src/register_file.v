@@ -21,7 +21,6 @@ module register_file (
 );
     reg [31:0] regs [0:31];
     integer i;
-    `ifndef SYNTHESIS
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             for (i = 0; i < 32; i = i + 1) regs[i] <= 32'd0;
@@ -30,14 +29,23 @@ module register_file (
                 regs[we_addr] <= we_data;
                 // DEBUG: announce register writes
                 
+`ifndef SYNTHESIS
                 $display("REGFILE WRITE: time=%0t we_en=%0d we_addr=%0d we_data=%08h", $time, we_en, we_addr, we_data);
+`endif
                 
             end
         end
     end
-    `endif
+`ifdef NO_RF_BYPASS
     assign rs1_data = (rs1_addr == 5'd0) ? 32'd0 : regs[rs1_addr];
     assign rs2_data = (rs2_addr == 5'd0) ? 32'd0 : regs[rs2_addr];
+`else
+    // write-through: same-cycle write-back is visible to the ID-stage read
+    assign rs1_data = (rs1_addr == 5'd0) ? 32'd0 :
+                      (we_en && we_addr == rs1_addr) ? we_data : regs[rs1_addr];
+    assign rs2_data = (rs2_addr == 5'd0) ? 32'd0 :
+                      (we_en && we_addr == rs2_addr) ? we_data : regs[rs2_addr];
+`endif
     assign dbg_r1 = regs[1];
     assign dbg_r2 = regs[2];
     assign dbg_r3 = regs[3];
