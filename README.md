@@ -144,21 +144,31 @@ with sparsity. The full CPU test program takes 3209 cycles. An earlier
 loader/compute optimisation pass (tag `opt-v1`) took the dense job from 2487
 to 826 cycles and the sparse job from 1255 to 610.
 
-## Area
+## Area and timing
 
-Measured once with Yosys + Nangate45 (typical corner), post-synthesis,
-pre-layout, at a 10 ns target:
+Yosys + OpenSTA, Nangate45 typical corner, post-synthesis, pre-layout
+(no wire load, ideal clock), 10 ns target. The descriptor memory is treated
+as an SRAM macro (black box), as a real chip would; synthesising it as
+flip-flops adds about 301,000 µm² and creates huge-fanout nets.
 
-| Block | Area (µm²) |
-|---|---|
-| Dispatch control (fetch unit + descriptor controller + top sequencer) | 7,519 |
-| Descriptor memory (128 descriptors, flip-flops) | 301,108 |
-| Whole `accelerator_top` | 584,309 |
+| Block | Area (µm²) | Fmax |
+|---|---|---|
+| Descriptor fetch unit | 5,147 | ≈ 198 MHz |
+| Descriptor controller | 2,280 | ≈ 171 MHz |
+| Top-level sequencer | ≈ 92 | – |
+| **Dispatch control total** | **≈ 7,519** | **≥ 171 MHz** |
+| Whole accelerator (descriptor memory as SRAM) | 283,408 | not yet measured |
 
-Dispatch control is about 1.3% of the accelerator. The descriptor memory
-dominates because it is built from flip-flops; in a real chip it would be an
-SRAM. These numbers predate the `transfer_engine` fix and will be re-measured
-(`sh scripts/synth_nangate.sh accelerator_top 10`).
+Dispatch control is about **2.7% of the accelerator's logic area**.
+A whole-accelerator Fmax is not reported yet: its worst paths are dominated
+by unbuffered high-fanout nets (one register driving ~1,000 inputs), which
+Yosys does not fix. That needs buffer insertion and gate sizing
+(OpenROAD `repair_design`); it is next on the list.
+
+Reproduce: `sh scripts/synth_nangate.sh accelerator_top 10`,
+`sh scripts/synth_nangate.sh descriptor_fetch_unit 10`,
+`sh scripts/synth_nangate.sh descriptor_controller 10`
+(`SRAM_BB=0` synthesises the descriptor memory as flip-flops).
 
 ## Known limits
 
@@ -173,6 +183,7 @@ SRAM. These numbers predate the `transfer_engine` fix and will be re-measured
 - The dense MAC counter is cumulative across jobs (it does not reset per job).
 - No formal verification yet. Early SVA files for the fetch unit are kept in
   `legacy/assertions/` but are not part of the regression.
+- No whole-accelerator Fmax yet (needs buffer insertion / OpenROAD); control-block timing is reported above.
 
 ## Run it
 
